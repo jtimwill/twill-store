@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  
+
   def show
-    @quiz = Quiz.all
   end
 
   def new
