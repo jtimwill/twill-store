@@ -6,6 +6,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/email/rspec'
+require 'sidekiq/testing/inline'
 require 'vcr'
 
 Capybara.server_port = 52662

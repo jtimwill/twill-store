@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root to: 'pages#front'
 
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy'
+  get '/sign_in', to: 'sessions#new'
+  post '/sign_in', to: 'sessions#create'
+  get '/sign_out', to: 'sessions#destroy'
   get '/register', to: 'users#new'
 
   resources :users, only: [:create, :show]
