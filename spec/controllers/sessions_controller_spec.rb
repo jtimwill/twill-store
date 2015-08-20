@@ -44,10 +44,10 @@ describe SessionsController do
     end
   end
 
-  describe "GET destroy" do
+  describe "DELETE destroy" do
     before do
       set_current_user
-      get :destroy
+      delete :destroy
     end
 
     it "clears the session for the user" do

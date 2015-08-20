@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, on: :create, length: {minimum: 3}
   has_many :cart_items
+  has_many :reviews
 end
