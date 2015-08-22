@@ -4,3 +4,7 @@ Fabricator(:user) do
   password 'password'
   admin false
 end
+
+Fabricator(:admin, from: :user) do
+  admin true
+end 

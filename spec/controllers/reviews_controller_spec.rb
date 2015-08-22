@@ -85,7 +85,6 @@ describe ReviewsController do
   end
 
   it_behaves_like "require sign in" do
-    product = Fabricate(:product)
     let(:action) {delete :destroy, id: 3, product_id: 4}
   end
 end

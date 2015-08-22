@@ -1,18 +1,16 @@
 class OrdersController < ApplicationController
+  before_action :require_user
+
   def index
+    @orders = Order.all
   end
 
   def create
+    Order.create(user: current_user)
+    redirect_to orders_path
   end
 
   def show
-  end
-
-  private
-
-  def order_params
-  end
-
-  def set_order
+    @order = Order.find(params[:id])
   end
 end
