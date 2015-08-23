@@ -10,7 +10,6 @@
       </button>
       <a class="navbar-brand" href="/">MyStore</a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
@@ -44,7 +43,10 @@
           <%= link_to 'Register', register_path %>
         </li>
         <li>
-          <%= link_to 'Log in', login_path %>
+          <%= link_to 'Log in', sign_in_path %>
+        </li>
+        <li>
+          <%= link_to 'Store', products_path %>
         </li>
         <% end %>
       </ul>
