@@ -7,4 +7,15 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :orders
   has_many :products, :through => :orders
+
+  def items_in_cart
+    cart_items.sum(:quantity)
+  end
+
+  def cart_total
+    total_array = cart_items.map do |item|
+      item.product.price*item.quantity.to_f/100
+    end
+    total_array.sum.round(2)
+  end
 end

@@ -1,1 +1,20 @@
 <%= render 'shared/content_title', title: 'Product Page' %>
+
+<article class="product_category">
+  <% @categories.each do |category| %>
+    <header>
+      <h3>
+        <%= link_to "#{category.name}", category_path(category) %>
+      </h3>
+    </header>
+    <div class="products row">
+      <% category.products.first(6).each do |product| %>
+        <product_format class="product col-sm-2">
+          <%= link_to product_path(product) do %>
+            <%= image_tag(product.small_image_path) %>
+          <% end %>
+        </product_format>
+      <% end %>
+    </div>
+  <% end %>
+</article>

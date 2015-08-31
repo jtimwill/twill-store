@@ -21,6 +21,7 @@ gem 'stripe'
 gem 'figaro'
 gem 'draper'
 gem 'stripe_event'
+gem 'bootswatch-rails'
 
 group :development do
   gem 'thin'

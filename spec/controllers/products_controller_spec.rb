@@ -3,11 +3,11 @@ require 'spec_helper'
 
 describe ProductsController do
   describe "GET index" do
-    it "sets @products" do
-      product1 = Fabricate(:product)
-      product2 = Fabricate(:product)
+    it "sets @categories" do
+      category1 = Fabricate(:category)
+      category2 = Fabricate(:category)
       get :index
-      expect(assigns(:products)).to eq([product1,product2])
+      expect(assigns(:categories)).to eq([category1,category2])
     end
   end
 

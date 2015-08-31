@@ -4,21 +4,17 @@
   <dl class='dl-horizontal'>
     <dt>Username:</dt>
     <dd><%= @user.username %></dd>
-    <dt>Quizzes taken:</dt>
-    <dd><%= @user.quizzes.count %></dd>    
+    <dt>Purchases Made:</dt>
+    <dd><%= @user.products.count %></dd>
   </dt>
 </div>
 
-<h5><%= @user.username %>'s Top Scores</h5>
-  <% @user.quizzes.each do |user_quiz| %>
-    <div class=' btn btn-default btn-lg btn-block'>
-      <p>
-          Quiz Category: <%= user_quiz.category %>
-      </br>
-          Score: <%= user_quiz.score %>
-      </br>
-          Date: <%= display_datetime(user_quiz.created_at) %>
-    </div>
-  <% end %>
+<h5><%= @user.username %>'s Activity</h5>
 
-  
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Orders</a></li>
+  <li role="presentation"><a href="#">Reviews</a></li>
+</ul>
+
+
+<%= link_to "Delete Review", "", method: :delete, class: 'btn btn-default'%>
