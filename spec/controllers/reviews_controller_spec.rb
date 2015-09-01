@@ -29,6 +29,11 @@ describe ReviewsController do
         it "creates a review associated with the signed in user" do
           expect(Review.first.user).to eq(current_user)
         end
+
+        it "does not create more than one review for the same product" do
+          post :create, review: Fabricate.attributes_for(:review), product_id: product.id
+          expect(Review.count).to eq(1)
+        end
       end
 
       context "with invalid inputs" do
@@ -67,9 +72,9 @@ describe ReviewsController do
     let(:bob) {Fabricate(:user)}
     before {set_current_user(alice)}
 
-    it "redirects to the product show page" do
+    it "redirects to the user show page" do
       delete :destroy, id: review.id, product_id: product.id
-      expect(response).to redirect_to product
+      expect(response).to redirect_to alice
     end
 
     it "deletes the review" do

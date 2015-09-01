@@ -62,14 +62,14 @@
           </fieldset>
         <% end %>
         <header>
-          <h3>User Reviews <%= "(#{@reviews.count})" %></h3>
+          <h3><%= "User Reviews (#{@reviews.count})" %></h3>
         </header>
         <ul>
           <% @reviews.each do |review| %>
             <article class="review">
               <li class="row">
                 <div class="span2">
-                  <span>Rating: <%= "#{review.rating}" %></span>
+                  <span><%= "Rating: #{review.rating}/5" %></span>
                   <p>
                     by
                     <%= link_to review.user.username, review.user %>

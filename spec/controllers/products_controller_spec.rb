@@ -20,8 +20,10 @@ describe ProductsController do
 
     it "sets @reviews" do
       product = Fabricate(:product)
-      review1 = Fabricate(:review, product_id: product.id)
-      review2 = Fabricate(:review, product_id: product.id)
+      alice = Fabricate(:user)
+      bob = Fabricate(:user)
+      review1 = Fabricate(:review, product_id: product.id, user_id: alice.id)
+      review2 = Fabricate(:review, product_id: product.id, user_id: bob.id)
       get :show, id: product.id
       expect(assigns(:reviews)).to match_array([review1, review2])
     end

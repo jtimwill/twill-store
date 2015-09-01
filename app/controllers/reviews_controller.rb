@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
     @product = Product.find(params[:product_id])
     review = Review.find(params[:id])
     review.destroy if current_user.reviews.include?(review)
-    redirect_to @product
+    redirect_to user_path(current_user)
   end
 
   private
