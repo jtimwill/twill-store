@@ -6,5 +6,5 @@ describe Review do
   it {should belong_to(:product)}
   it {should validate_presence_of(:content)}
   it {should validate_presence_of(:rating)}
-  # it {should validate_uniqueness_of(:user)} http://stackoverflow.com/questions/16268146/shoulda-matchers-should-validate-uniqueness-of-failing-with-scope
+  it { should validate_uniqueness_of(:user_id).scoped_to(:product_id)}
 end

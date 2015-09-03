@@ -25,14 +25,49 @@ describe CartItemsController do
       let(:action) {post :create}
     end
 
-    it "creates the cart_item" do
-      post :create
-      expect(CartItem.count).to eq(1)
+    context "with new item" do
+      let(:product) {Fabricate(:product)}
+      before do
+        post :create, product_id: product.id, quantity: 1, user_id: alice.id
+      end
+
+      it "creates the cart_item" do
+        expect(alice.cart_items.count).to eq(1)
+      end
+
+      it "creates a cart item associated with the signed in user" do
+        expect(CartItem.first.user).to eq(alice)
+      end
+
+      it "does not not increment the product quantity" do
+        expect(CartItem.first.quantity).to eq(1)
+      end
+
+      it "redirects to the cart items path" do
+        expect(response).to redirect_to cart_items_path
+      end
     end
 
-    it "redirects to the cart items path" do
-      post :create
-      expect(response).to redirect_to cart_items_path
+    context "with existing item" do
+      let(:product) {Fabricate(:product)}
+
+      it "does not create a new cart item" do
+        cart_item = Fabricate(:cart_item, product_id: product.id, quantity: 4, user_id: alice.id)
+        post :create, product_id: product.id, quantity: 3, user_id: alice.id
+        expect(alice.cart_items.count).to eq(1)
+      end
+
+      it "increments the product quantity" do
+        cart_item = Fabricate(:cart_item, product_id: product.id, quantity: 4, user_id: alice.id)
+        post :create, product_id: product.id, quantity: 3, user_id: alice.id
+        expect(CartItem.first.quantity).to eq(7)
+      end
+
+      it "redirects to the cart items path" do
+        cart_item = Fabricate(:cart_item, product_id: product.id, quantity: 4, user_id: alice.id)
+        post :create, product_id: product.id, quantity: 3, user_id: alice.id
+        expect(response).to redirect_to cart_items_path
+      end
     end
   end
 

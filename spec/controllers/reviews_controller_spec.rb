@@ -57,6 +57,11 @@ describe ReviewsController do
           post :create, review: {rating: 4}, product_id: product.id
           expect(assigns(:reviews)).to match_array([review])
         end
+
+        it "displays error message" do
+          post :create, review: {rating: 4}, product_id: product.id
+          expect(flash[:danger]).to eq("Invalid review. Please check the errors below.")
+        end
       end
     end
 

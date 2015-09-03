@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
       redirect_to @product
     else
       @reviews = @product.reviews.reload
+      flash.now[:danger] = "Invalid review. Please check the errors below."
       render 'products/show'
     end
   end
