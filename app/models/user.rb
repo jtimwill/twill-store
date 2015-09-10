@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   def cart_total
     total_array = cart_items.map do |item|
-      item.product.price*item.quantity.to_f/100
+      item.product.price*item.quantity
     end
     total_array.sum.round(2)
   end

@@ -9,6 +9,13 @@ describe ProductsController do
       get :index
       expect(assigns(:categories)).to eq([category1,category2])
     end
+
+    it "sets @products" do
+      product1 = Fabricate(:product)
+      product2 = Fabricate(:product)
+      get :index
+      expect(assigns(:products)).to eq([product1,product2])
+    end
   end
 
   describe "GET show" do

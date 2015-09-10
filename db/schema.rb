@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830143706) do
+ActiveRecord::Schema.define(version: 20150907160733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,15 @@ ActiveRecord::Schema.define(version: 20150830143706) do
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "total"
+    t.string   "reference_id"
+    t.integer  "shipping_option_id"
   end
 
   add_index "orders", ["product_id"], name: "index_orders_on_product_id", using: :btree
+  add_index "orders", ["shipping_option_id"], name: "index_orders_on_shipping_option_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
@@ -70,6 +73,13 @@ ActiveRecord::Schema.define(version: 20150830143706) do
   add_index "reviews", ["product_id"], name: "index_reviews_on_product_id", using: :btree
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
+  create_table "shipping_options", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
@@ -80,4 +90,5 @@ ActiveRecord::Schema.define(version: 20150830143706) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "orders", "shipping_options"
 end

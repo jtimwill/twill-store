@@ -30,7 +30,7 @@ describe User do
       product2 = Fabricate(:product, price: 1599)
       Fabricate(:cart_item, user: user, product: product1, quantity: 2)
       Fabricate(:cart_item, user: user, product: product2, quantity: 3)
-      expect(user.cart_total).to eq(67.95)
+      expect(user.cart_total).to eq(6795)
     end
 
     it "returns zero if the cart is empty" do

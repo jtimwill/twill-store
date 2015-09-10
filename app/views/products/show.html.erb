@@ -26,7 +26,7 @@
           <% end %>
         </br>
 
-          <% if current_user.admin? %>
+          <% if logged_in? and current_user.admin? %>
             <%= link_to "Delete Product", admin_product_path(id: @product.id), method: :delete, class: 'btn btn-danger'%>
           <% end %>
         </div>
