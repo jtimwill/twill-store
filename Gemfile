@@ -19,6 +19,7 @@ gem 'figaro'
 gem 'draper'
 gem 'stripe_event'
 gem 'bootswatch-rails'
+gem 'celluloid', '0.16.0'
 
 group :development do
   gem 'thin'
