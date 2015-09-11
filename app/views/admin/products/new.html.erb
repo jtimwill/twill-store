@@ -1,0 +1,29 @@
+<%= render 'shared/content_title', title: 'Add Product' %>
+
+<section class="admin_add_video">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <%= bootstrap_form_for [:admin, @product], layout: :horizontal do |f| %>
+          <br/>
+          <fieldset>
+            <div class="form-group">
+              <div class="col-sm-6 col-md-offset-2">
+                <%= f.text_field :title %>
+                <%= f.select :category_id, options_for_select(Category.all.map {|category| [category.name, category.id]}) %>
+                <%= f.text_area :description, rows: 8 %>
+                <%= f.file_field :large_image_path, class: "btn btn-file form-control"           %>
+                <%= f.file_field :small_image_path, class: "btn btn-file form-control" %>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="actions form-group">
+            <div class="col-sm-6 col-md-offset-3">
+              <%= f.submit "Add product", class: "btn btn-default" %>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

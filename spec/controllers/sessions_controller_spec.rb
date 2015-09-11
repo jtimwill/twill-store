@@ -6,12 +6,12 @@ describe SessionsController do
     context "with valid credentials" do
       before do
         alice = Fabricate(:user)
-        post :create, email: alice.email, password: alice.password
+        post :create, username: alice.username, password: alice.password
       end
 
       it "puts the signed in user in the session" do
         alice = Fabricate(:user)
-        post :create, email: alice.email, password: alice.password
+        post :create, username: alice.username, password: alice.password
         expect(session[:user_id]).to eq(alice.id)
       end
 
@@ -27,7 +27,7 @@ describe SessionsController do
     context "with invalid credentials" do
       before do
         alice = Fabricate(:user)
-        post :create, email: alice.email, password: alice.password + 'asdfasf'
+        post :create, username: alice.username, password: alice.password + 'asdfasf'
       end
 
       it "does not put the signed in user in the session" do
@@ -35,7 +35,7 @@ describe SessionsController do
       end
 
       it "redrects to the sign in page" do
-        expect(response).to redirect_to sign_in_path
+        expect(response).to redirect_to login_path
       end
 
       it "sets the error message" do

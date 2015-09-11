@@ -3,6 +3,13 @@ require 'spec_helper'
 
 describe ProductsController do
   describe "GET index" do
+    it "sets @categories" do
+      category1 = Fabricate(:category)
+      category2 = Fabricate(:category)
+      get :index
+      expect(assigns(:categories)).to eq([category1,category2])
+    end
+
     it "sets @products" do
       product1 = Fabricate(:product)
       product2 = Fabricate(:product)
@@ -20,8 +27,10 @@ describe ProductsController do
 
     it "sets @reviews" do
       product = Fabricate(:product)
-      review1 = Fabricate(:review, product_id: product.id)
-      review2 = Fabricate(:review, product_id: product.id)
+      alice = Fabricate(:user)
+      bob = Fabricate(:user)
+      review1 = Fabricate(:review, product_id: product.id, user_id: alice.id)
+      review2 = Fabricate(:review, product_id: product.id, user_id: bob.id)
       get :show, id: product.id
       expect(assigns(:reviews)).to match_array([review1, review2])
     end

@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
       redirect_to @product
     else
       @reviews = @product.reviews.reload
+      flash.now[:danger] = "Invalid review. Please check the errors below."
       render 'products/show'
     end
   end
@@ -17,7 +18,7 @@ class ReviewsController < ApplicationController
     @product = Product.find(params[:product_id])
     review = Review.find(params[:id])
     review.destroy if current_user.reviews.include?(review)
-    redirect_to @product
+    redirect_to user_path(current_user)
   end
 
   private

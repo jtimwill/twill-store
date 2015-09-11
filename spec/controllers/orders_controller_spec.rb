@@ -2,38 +2,128 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe OrdersController do
-  describe "GET index" do
-    it_behaves_like "require sign in" do
-      let(:action) {get :index}
+  let(:alice) {Fabricate(:user)}
+  before {set_current_user(alice)}
+
+  it_behaves_like "require sign in" do
+    let(:action) {post :create}
+  end
+
+  describe "GET new" do
+    it "sets @free_shipping" do
+      shipping_option = Fabricate(:shipping_option, title: 'Free Shipping (5-8 business days)')
+      get :new
+      expect(assigns(:free_shipping)).to eq(shipping_option)
     end
 
-    it "sets @orders" do
-      alice = Fabricate(:user)
-      product = Fabricate(:product)
-      set_current_user(alice)
-      order1 = Fabricate(:order)
-      order2 = Fabricate(:order)
-      get :index
-      expect(assigns(:orders)).to eq([order1,order2])
+    it "sets @standard_shipping" do
+      shipping_option = Fabricate(:shipping_option, title: 'Standard Shipping (4-5 business days)')
+      get :new
+      expect(assigns(:standard_shipping)).to eq(shipping_option)
+    end
+
+    it "sets @cart_items" do
+      cart_item1 = Fabricate(:cart_item)
+      cart_item2 = Fabricate(:cart_item)
+      get :new
+      expect(assigns(:cart_items)).to eq([cart_item1,cart_item2])
+    end
+
+    it "sets @order" do
+      get :new
+      expect(assigns(:order)).to be_new_record
+      expect(assigns(:order)).to be_instance_of(Order)
     end
   end
 
   describe "POST create" do
-    let(:alice) {Fabricate(:user)}
+    let(:shipping_option) {Fabricate(:shipping_option, cost: 799)}
+    let(:alice) {Fabricate(:user, username: "Alice", email: "alice@example.com")}
     before {set_current_user(alice)}
+    before {ActionMailer::Base.deliveries.clear}
 
     it_behaves_like "require sign in" do
       let(:action) {post :create}
     end
 
-    it "creates the order" do
-      post :create
-      expect(Order.count).to eq(1)
+    # it "sets @order" do
+    #   order = Fabricate(:order)
+    #   product = Fabricate(:product, price: 10000)
+    #   cart_item1 = Fabricate(:cart_item, user_id: alice.id, product_id: product.id, quantity: 1)
+    #   post :create, optionsRadios: shipping_option.id
+    #   expect(assigns(:order)).to be_instance_of(Order)
+    #   expect(Order.last.total).to eq(10799)
+    # end
+
+    context "with valid input" do
+      let(:charge) {double(:charge, successful?: true)}
+      before do
+        expect(StripeWrapper::Charge).to receive(:create).and_return(charge)
+      end
+
+      it "creates an order" do
+        post :create, optionsRadios: shipping_option.id
+        expect(Order.count).to eq(1)
+      end
+
+      it "sends out an email" do
+        post :create, optionsRadios: shipping_option.id
+        expect(ActionMailer::Base.deliveries.last.to).to eq(["alice@example.com"])
+      end
+
+      it "sends out email containing the user's name and order total" do
+        product = Fabricate(:product, price: 10000)
+        Fabricate(:cart_item, user_id: alice.id, product_id: product.id, quantity: 7)
+        post :create, optionsRadios: shipping_option.id
+        expect(ActionMailer::Base.deliveries.last.body).to include("Alice")
+        expect(ActionMailer::Base.deliveries.last.body).to include("$707.99")
+      end
+
+      it "displays the success message" do
+        post :create, optionsRadios: shipping_option.id
+        expect(flash[:success]).to eq("Order Successful")
+      end
+
+      it "clears the user's cart" do
+        product1 = Fabricate(:product, price: 10000)
+        product2 = Fabricate(:product, price: 5000)
+        cart_item1 = Fabricate(:cart_item, user_id: alice.id, product_id: product1.id, quantity: 1)
+        cart_item2 = Fabricate(:cart_item, user_id: alice.id, product_id: product2.id, quantity: 2)
+        post :create, optionsRadios: shipping_option.id
+        expect(alice.cart_items.count).to eq(0)
+      end
+
+      it "redirects to the user profile" do
+        post :create, optionsRadios: shipping_option.id
+        expect(response).to redirect_to user_path(alice)
+      end
     end
 
-    it "redirects to the orders path" do
-      post :create
-      expect(response).to redirect_to orders_path
+    context "declined card" do
+      let(:charge) {double(:charge, successful?: false, error_message: "Your card was declined.")}
+      before do
+        expect(StripeWrapper::Charge).to receive(:create).and_return(charge)
+      end
+
+      it "does not create a new order" do
+        post :create, optionsRadios: shipping_option.id
+        expect(Order.count).to eq(0)
+      end
+
+      it "does not send out email" do
+        post :create, optionsRadios: shipping_option.id
+        expect(ActionMailer::Base.deliveries).to be_empty
+      end
+
+      it "displays the danger message" do
+        post :create, optionsRadios: shipping_option.id
+        expect(flash[:danger]).to be_present
+      end
+
+      it "renders the new template" do
+        post :create, optionsRadios: shipping_option.id
+        expect(response).to render_template "users/show"
+      end
     end
   end
 

@@ -1,11 +1,11 @@
 class CreateReviews < ActiveRecord::Migration
   def change
     create_table :reviews do |t|
-      t.integer :user_id
-      t.integer :product_id
-      t.text :description
+      t.belongs_to :user, index: true
+      t.belongs_to :product, index: true
+      t.text :content
       t.integer :rating
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

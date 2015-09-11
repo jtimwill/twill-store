@@ -1,1 +1,16 @@
-<%= render 'shared/content_title', title: 'Product Page' %>
+<%= render 'shared/content_title', title: 'All Products' %>
+
+<ul class="nav nav-pills nav-stacked col-md-2">
+  <li role="presentation" class="active"><a>Categories</a></li>
+  <% @categories.each do |category| %>
+    <li role="presentation"><%= link_to "#{category.name}", category_path(category), remote: true %></li>
+  <% end %>
+</ul>
+
+<article class="product_category col-md-offset-2">
+  <div id="products">
+    <% @products.each do |product| %>
+      <%= render 'product', product: product %>
+    <% end %>
+  </div>
+</article>
