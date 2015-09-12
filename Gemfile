@@ -14,14 +14,12 @@ gem 'bcrypt'
 gem 'sidekiq'
 gem 'unicorn'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
-gem 'carrierwave'
-gem 'carrierwave-aws'
-gem 'mini_magick'
 gem 'stripe'
 gem 'figaro'
 gem 'draper'
 gem 'stripe_event'
 gem 'bootswatch-rails'
+gem 'celluloid', '0.16.0'
 
 group :development do
   gem 'thin'
