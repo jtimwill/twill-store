@@ -11,7 +11,7 @@ planes = Category.create(name: "Planes")
 
 10.times do |index|
   Product.create(title: "Car #{index + 1}",
-               description: Faker::Lorem.paragraph(2),
+               description: "Just a little description of Car #{index + 1}",
                small_image_path: "/tmp/family_guy.jpg",
                large_image_path: "http://dummyimage.com/665x375/000000/00a2ff",
                category: cars)
@@ -19,7 +19,7 @@ end
 
 10.times do |index|
   Product.create(title: "Plane #{index + 1}",
-               description: Faker::Lorem.paragraph(2),
+               description: "Just a little description of Plane #{index + 1}",
                small_image_path: "/tmp/futurama.jpg",
                large_image_path: "http://dummyimage.com/665x375/000000/00a2ff",
                category: planes)
