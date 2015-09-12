@@ -14,7 +14,7 @@ planes = Category.create(name: "Planes")
                description: "Just a little description of Car #{index + 1}",
                small_image_path: "/tmp/family_guy.jpg",
                large_image_path: "http://dummyimage.com/665x375/000000/00a2ff",
-               price: prng.rand(1999..9999),
+               price: rand(1999..9999),
                category_id: cars.id,
                category: cars.name)
 end
@@ -24,7 +24,7 @@ end
                description: "Just a little description of Plane #{index + 1}",
                small_image_path: "/tmp/futurama.jpg",
                large_image_path: "http://dummyimage.com/665x375/000000/00a2ff",
-               price: prng.rand(1999..9999),
+               price: rand(1999..9999),
                category_id: planes.id,
                category: planes.name)
 end
