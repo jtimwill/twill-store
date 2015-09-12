@@ -29,6 +29,10 @@ end
                category: planes.name)
 end
 
+ShippingOption.create(title: "Standard Shipping (4-5 business days)", cost: 799)
+ShippingOption.create(title: "Free Shipping (5-8 business days)", cost: 0)
+
+
 bobby = User.create(username: "Bobby Smith", password: "password", email: "bobby@example.com")
 steve = User.create(username: "Steve Max", password: "password", email: "steve@example.com")
 
