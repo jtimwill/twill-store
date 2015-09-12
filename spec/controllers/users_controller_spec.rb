@@ -42,7 +42,7 @@ describe UsersController do
       end
 
       it "displays welcome message" do
-        expect(flash[:notice]).to eq("You are registered.")
+        expect(flash[:success]).to eq("You are registered.")
       end
     end
 

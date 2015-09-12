@@ -1,14 +1,16 @@
 <article class="product_category col-md-offset-2">
   <% @products.each do |product| %>
-    <product_format class="col-md-2">
+    <product_format class="col-md-2 text-center">
       <%= link_to product_path(product) do %>
         <%= image_tag(product.small_image_path) %>
       <% end %>
+      <p>
       <strong>
         <%= link_to product.title, product_path(product) %><br>
         <font color="DarkRed">$<%= product.price.to_f/100 %></font><br>
         Rating: <%= "#{product.rating}/5" %>
       </strong>
+      </p>
     </product_format>
   <% end %>
 </article>
