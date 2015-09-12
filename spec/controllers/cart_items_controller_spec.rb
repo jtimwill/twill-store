@@ -110,6 +110,10 @@ describe CartItemsController do
       let(:action) {post :update_cart, cart_items: [{id: 1, quantity: 5}]}
     end
 
+    it_behaves_like "require items" do
+      let(:action) {post :update_cart, cart_items: [{id: 1, quantity: 5}]}
+    end
+
     it "updates the cart item quantity" do
       post :update_cart, cart_items: [{id: cart_item1.id, quantity: 6}, {id: cart_item2.id, quantity: 4}]
       expect(alice.cart_items.reload.first.quantity).to eq(6)

@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
   before_action :require_user
+  before_action :require_items, only: [:update_cart]
 
   def index
     @cart_items = CartItem.all

@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+
+  def require_items
+    if current_user.cart_items.count == 0
+      flash[:danger] = "Your cart is empty"
+      redirect_to cart_path
+    end
+  end
 end

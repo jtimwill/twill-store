@@ -3,13 +3,19 @@ require 'spec_helper'
 
 describe OrdersController do
   let(:alice) {Fabricate(:user)}
+  # let(:product) {Fabricate(:product, price: 10000)}
+  # let(:cart_item) {Fabricate(:cart_item, user_id: alice.id, product_id: product.id, quantity: 7)}
   before {set_current_user(alice)}
 
-  it_behaves_like "require sign in" do
-    let(:action) {post :create}
-  end
-
   describe "GET new" do
+    it_behaves_like "require sign in" do
+      let(:action) {get :new}
+    end
+
+    # it_behaves_like "require items" do
+    #   let(:action) {get :new}
+    # end
+
     it "sets @free_shipping" do
       shipping_option = Fabricate(:shipping_option, title: 'Free Shipping (5-8 business days)')
       get :new
@@ -45,6 +51,10 @@ describe OrdersController do
     it_behaves_like "require sign in" do
       let(:action) {post :create}
     end
+
+    # it_behaves_like "require items" do
+    #   let(:action) {post :create}
+    # end
 
     # it "sets @order" do
     #   order = Fabricate(:order)
@@ -131,6 +141,10 @@ describe OrdersController do
     it_behaves_like "require sign in" do
       let(:action) {get :show, id: 1}
     end
+
+    # it_behaves_like "require items" do
+    #   let(:action) {get :show, id: 1}
+    # end
 
     it "sets @order" do
       alice = Fabricate(:user)

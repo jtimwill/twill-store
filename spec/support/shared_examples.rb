@@ -13,3 +13,11 @@ shared_examples "require admin" do
     expect(response).to redirect_to root_path
   end
 end
+
+shared_examples "require items" do
+  it "redirects to the cart path" do
+    session[:user_id] = Fabricate(:user).id
+    action
+    expect(response).to redirect_to cart_path
+  end
+end

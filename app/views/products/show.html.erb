@@ -11,8 +11,8 @@
           <h3>
             <%= @product.title %>
           </h3>
-          <span>Rating: </span>
-          <%= @product.rating %>
+          Rating: <font color="DarkRed"><%= @product.rating %>/5</font><br>
+          Price: <font color="DarkRed">$<%= @product.price.to_f/100 %></font>
         </header>
         <p>
           <%= @product.description %>
