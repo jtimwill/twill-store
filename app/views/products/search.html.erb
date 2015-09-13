@@ -1,0 +1,6 @@
+<%= render 'shared/content_title', title: "Search Results (#{@products.count})" %>
+
+<article class="product_category col-md-offset-2">
+  <%= render 'shared/products'%>
+  <%= render 'search_pagination'%>
+</article>

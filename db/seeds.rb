@@ -24,7 +24,7 @@ small_images = ["/tmp/small/dummy-175x175-Bottles.jpg",
 odds = Category.create(name: "Odds")
 ends = Category.create(name: "Ends")
 
-10.times do |index|
+25.times do |index|
   Product.create(title: "Odd #{index + 1}",
                description: "Just a little description of Odd #{index + 1}",
                small_image_path: small_images.sample,
@@ -36,7 +36,7 @@ ends = Category.create(name: "Ends")
                category: odds.name)
 end
 
-10.times do |index|
+25.times do |index|
   Product.create(title: "End #{index + 1}",
                description: "Just a little description of End #{index + 1}",
                small_image_path: small_images.sample,

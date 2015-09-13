@@ -11,6 +11,14 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="navbar-form">
+            <%= bootstrap_form_tag url: search_products_path do |f| %>
+              <%= f.text_field(:search_term, hide_label: true, placeholder: "Product Search") %>
+              <%= f.submit("Search") %>
+            <% end %>
+          </div>
+        </li>
         <% if !logged_in? %>
           <li>
             <%= link_to 'Sign In', login_path %>
@@ -53,6 +61,6 @@
         </li>
         <% end %>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
