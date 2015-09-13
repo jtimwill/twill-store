@@ -7,8 +7,8 @@
   <p>
     <strong>
       <%= link_to product.title, product_path(product) %><br>
-      <font color="DarkRed">$<%= product.price.to_f/100 %></font><br>
-      Rating: <%= "#{product.rating}/5" %>
+      <font color="DarkRed">$<%= (product.price.to_f/100).round(2) %></font><br>
+      Rating: <%= product.rating %>
     </strong>
   </p>
 </product_format>

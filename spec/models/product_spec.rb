@@ -19,11 +19,11 @@ describe Product do
       Fabricate(:review, user_id: alice.id, product_id: product.id, rating: 1)
       Fabricate(:review, user_id: bob.id, product_id: product.id, rating: 1)
       Fabricate(:review, user_id: carl.id, product_id: product.id, rating: 3)
-      expect(product.rating).to eq(1.7)
+      expect(product.rating).to eq("1.7/5")
     end
 
-    it "returns nil when a rating is not present" do
-      expect(product.rating).to be_nil
+    it "returns a string when a rating is not present" do
+      expect(product.rating).to eq("no rating")
     end
   end
 end

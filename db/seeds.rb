@@ -5,21 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-large_images = ["/tmp/dummy-665x375-Comb.jpg",
-                "/tmp/dummy-665x375-Glass.jpg",
-                "/tmp/dummy-665x375-Geometry.jpg",
-                "/tmp/dummy-665x375-Stones.jpg",
-                "/tmp/dummy-665x375-White.jpg"]
+large_images = ["/tmp/large/dummy-665x375-Comb.jpg",
+                "/tmp/large/dummy-665x375-Glass.jpg",
+                "/tmp/large/dummy-665x375-Goemetry.jpg",
+                "/tmp/large/dummy-665x375-Stones.jpg",
+                "/tmp/large/dummy-665x375-White.jpg"]
 
-small_images = ["dummy-175x175-Bottles.jpg",
-                "dummy-175x175-Comb.jpg",
-                "dummy-175x175-DesiccationCracks.jpg",
-                "dummy-175x175-Glass.jpg",
-                "dummy-175x175-Geometry.jpg",
-                "dummy-175x175-RedDots.jpg",
-                "dummy-175x175-Stones.jpg",
-                "dummy-175x175-Utrecht.jpg",
-                "dummy-175x175-White.jpg"]
+small_images = ["/tmp/small/dummy-175x175-Bottles.jpg",
+                "/tmp/small/dummy-175x175-Comb.jpg",
+                "/tmp/small/dummy-175x175-DesiccationCracks.jpg",
+                "/tmp/small/dummy-175x175-Glass.jpg",
+                "/tmp/small/dummy-175x175-Goemetry.jpg",
+                "/tmp/small/dummy-175x175-RedDots.jpg",
+                "/tmp/small/dummy-175x175-Stones.jpg",
+                "/tmp/small/dummy-175x175-Utrecht.jpg",
+                "/tmp/small/dummy-175x175-White.jpg"]
 
 odds = Category.create(name: "Odds")
 ends = Category.create(name: "Ends")

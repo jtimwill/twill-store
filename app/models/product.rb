@@ -6,6 +6,10 @@ class Product < ActiveRecord::Base
   validates_presence_of :title, :description
 
   def rating
-    reviews.average(:rating).round(1) if reviews.average(:rating)
+    if reviews.average(:rating)
+      "#{reviews.average(:rating).round(1)}/5"
+    else
+      "no rating"
+    end
   end
 end

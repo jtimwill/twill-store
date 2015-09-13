@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :require_user
-  # before_action :require_items, only: [:new]
+  before_action :require_items, only: [:new, :create]
 
   def new
     @free_shipping = ShippingOption.find_by(title: 'Free Shipping (5-8 business days)')

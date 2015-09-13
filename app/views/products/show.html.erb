@@ -14,13 +14,13 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
             <div class="item active">
-              <%= image_tag(product.large_image_path1) %>
+              <%= image_tag(@product.large_image_path1) %>
             </div>
             <div class="item">
-              <%= image_tag(product.large_image_path2) %>
+              <%= image_tag(@product.large_image_path2) %>
             </div>
             <div class="item">
-              <%= image_tag(product.large_image_path3) %>
+              <%= image_tag(@product.large_image_path3) %>
             </div>
           </div>
           <!-- Controls -->
@@ -40,8 +40,8 @@
           <h3>
             <%= @product.title %>
           </h3>
-          Rating: <font color="DarkRed"><%= @product.rating %>/5</font><br>
-          Price: <font color="DarkRed">$<%= @product.price.to_f/100 %></font>
+          Rating: <font color="DarkRed"><%= @product.rating %></font><br>
+          Price: <font color="DarkRed">$<%= (@product.price.to_f/100).round(2) %></font>
         </header>
         <p>
           <%= @product.description %>

@@ -3,10 +3,6 @@ require 'spec_helper'
 
 describe CategoriesController do
   describe "GET show" do
-    it_behaves_like "require sign in" do
-      let(:action) {get :show, id: 3}
-    end
-
     it "sets @products eq to the category param" do
       set_current_user
       category1 = Fabricate(:category)
@@ -17,7 +13,8 @@ describe CategoriesController do
       product3 = Fabricate(:product, category_id: category2.id)
 
       get :show, id: category1.id
-      expect(assigns(:products)).to eq([product1,product2])
+      expect(assigns(:products)).to include(product2,product1)
+      expect(assigns(:products)).not_to include(product3)
     end
   end
 end
