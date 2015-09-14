@@ -4,8 +4,8 @@ class ReviewsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     review = @product.reviews.build(review_params.merge!(user: current_user))
-
     if review.save
+      add_rating(@product)
       redirect_to @product
     else
       @reviews = @product.reviews.reload
@@ -17,11 +17,26 @@ class ReviewsController < ApplicationController
   def destroy
     @product = Product.find(params[:product_id])
     review = Review.find(params[:id])
-    review.destroy if current_user.reviews.include?(review)
+    if current_user.reviews.include?(review)
+      remove_rating(@product)
+      review.destroy
+    end
     redirect_to user_path(current_user)
   end
 
   private
+
+  def add_rating(product)
+    total_reviews = product.reviews.count
+    new_rating = ((total_reviews-1)*product.rating + product.reviews.last.rating)/total_reviews
+    product.update_attributes(rating: new_rating)
+  end
+
+  def remove_rating(product)
+    total_reviews = product.reviews.count
+    new_rating = (total_reviews*product.rating - product.reviews.last.rating)/(total_reviews - 1)
+    product.update_attributes(rating: new_rating)
+  end
 
   def review_params
     params.require(:review).permit(:content, :rating)

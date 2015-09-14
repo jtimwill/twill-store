@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @categories = Category.all
-    @products = Product.limit(Product::PER_PAGE).offset(params[:offset])
+    @products = Product.order(params[:sort_by]).limit(Product::PER_PAGE).offset(params[:offset])
     @pages = (Product.all.size.to_f / Product::PER_PAGE).ceil
 
     if params[:offset].nil?
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   def search
     @term = params[:search_term]
     @categories = Category.all
-    @results = Product.search_by_title(params[:search_term])
+    @results = Product.search_by_title(@term)
     if @results == []
       @products = @results
       @pages = 1

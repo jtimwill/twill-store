@@ -25,28 +25,35 @@ odds = Category.create(name: "Odds")
 ends = Category.create(name: "Ends")
 
 25.times do |index|
-  Product.create(title: "Odd #{index + 1}",
-               description: "Just a little description of Odd #{index + 1}",
-               small_image_path: small_images.sample,
-               large_image_path1: large_images.sample,
-               large_image_path2: large_images.sample,
-               large_image_path3: large_images.sample,
-               price: rand(1999..9999),
-               category_id: odds.id,
-               category: odds.name)
+  Product.create(
+                 title: "Odd #{index + 1}",
+                 description: "Just a little description of Odd #{index + 1}",
+                 small_image_path: small_images.sample,
+                 large_image_path1: large_images.sample,
+                 large_image_path2: large_images.sample,
+                 large_image_path3: large_images.sample,
+                 price: rand(1999..9999),
+                 category_id: odds.id,
+                 category: odds.name,
+                 rating: rand(1.00..5.00)
+                )
 end
 
 25.times do |index|
-  Product.create(title: "End #{index + 1}",
-               description: "Just a little description of End #{index + 1}",
-               small_image_path: small_images.sample,
-               large_image_path1: large_images.sample,
-               large_image_path2: large_images.sample,
-               large_image_path3: large_images.sample,
-               price: rand(1999..9999),
-               category_id: ends.id,
-               category: ends.name)
+  Product.create(
+                 title: "End #{index + 1}",
+                 description: "Just a little description of End #{index + 1}",
+                 small_image_path: small_images.sample,
+                 large_image_path1: large_images.sample,
+                 large_image_path2: large_images.sample,
+                 large_image_path3: large_images.sample,
+                 price: rand(1999..9999),
+                 category_id: odds.id,
+                 category: odds.name,
+                 rating: rand(1.00..5.00)
+                )
 end
+
 
 ShippingOption.create(title: "Standard Shipping (4-5 business days)", cost: 799)
 ShippingOption.create(title: "Free Shipping (5-8 business days)", cost: 0)

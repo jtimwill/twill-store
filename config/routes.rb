@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   resources :products, only: [:show, :index] do
     resources :reviews, only: [:create, :destroy]
   end
-  post :search_products, to: 'products#search'
   get :search_products, to: 'products#search'
 
   namespace :admin do
