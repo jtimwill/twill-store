@@ -1,6 +1,6 @@
 <ul class="nav nav-pills nav-stacked col-md-2">
   <li role="presentation" class="active"><a>Sort By</a></li>
   <% @categories.each do |category| %>
-    <li role="presentation"><%= link_to "#{category.name}", category_path(category) %></li>
+    <li role="presentation"><%= link_to "#{category.name}", category_path(category, sort_by: "rating", page_number: 1) %></li>
   <% end %>
 </ul>

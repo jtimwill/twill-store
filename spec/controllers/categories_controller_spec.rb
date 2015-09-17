@@ -3,18 +3,33 @@ require 'spec_helper'
 
 describe CategoriesController do
   describe "GET show" do
-    it "sets @products eq to the category param" do
-      set_current_user
-      category1 = Fabricate(:category)
-      category2 = Fabricate(:category)
+    let(:category1) {Fabricate(:category)}
+    let(:category2) {Fabricate(:category)}
+    before {11.times {Fabricate(:product, category_id: category1.id)}}
 
-      product1 = Fabricate(:product, category_id: category1.id)
-      product2 = Fabricate(:product, category_id: category1.id)
-      product3 = Fabricate(:product, category_id: category2.id)
-
+    it "sets @categories" do
       get :show, id: category1.id
-      expect(assigns(:products)).to include(product2,product1)
-      expect(assigns(:products)).not_to include(product3)
+      expect(assigns(:categories)).to eq([category1,category2])
+    end
+
+    it "sets @category" do
+      get :show, id: category1.id
+      expect(assigns(:category)).to eq(category1)
+    end
+
+    it "sets @pages" do
+      get :show, id: category1.id
+      expect(assigns(:pages)).to eq(2)
+    end
+
+    it "sets @current_page_number" do
+      get :show, id: category1.id, page_number: "5"
+      expect(assigns(:current_page_number)).to eq(5)
+    end
+
+    it "sets @products for the page" do
+      get :show, id: category1.id, page_number: "1", sort_by: "created_at"
+      expect(assigns(:products)).to match_array(Product.limit(10))
     end
   end
 end

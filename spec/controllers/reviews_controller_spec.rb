@@ -11,7 +11,7 @@ describe ReviewsController do
 
       context "with valid inputs" do
         before do
-          post :create, review: Fabricate.attributes_for(:review), product_id: product.id
+          post :create, review: Fabricate.attributes_for(:review, rating: 3), product_id: product.id
         end
 
         it "redirects to the product show page" do
@@ -33,6 +33,10 @@ describe ReviewsController do
         it "does not create more than one review for the same product" do
           post :create, review: Fabricate.attributes_for(:review), product_id: product.id
           expect(Review.count).to eq(1)
+        end
+
+        it "updates the product with the new review rating" do
+          expect(Product.first.rating).to eq(3.00)
         end
       end
 
@@ -71,15 +75,15 @@ describe ReviewsController do
   end
 
   describe "DELETE destroy" do
-    let(:product) {Fabricate(:product)}
+    let(:product) {Fabricate(:product, rating: 3.00)}
     let(:review){Fabricate(:review, user_id: alice.id, product_id: product.id)}
     let(:alice) {Fabricate(:user)}
     let(:bob) {Fabricate(:user)}
     before {set_current_user(alice)}
 
-    it "redirects to the user show page" do
+    it "removes the review rating from the product" do
       delete :destroy, id: review.id, product_id: product.id
-      expect(response).to redirect_to alice
+      expect(Product.first.rating).to be_nil
     end
 
     it "deletes the review" do
@@ -91,6 +95,11 @@ describe ReviewsController do
       bob_review = Fabricate(:review, user_id: bob.id, product_id: product.id)
       delete :destroy, id: bob_review.id, product_id: product.id
       expect(Review.count).to eq(1)
+    end
+
+    it "redirects to the user show page" do
+      delete :destroy, id: review.id, product_id: product.id
+      expect(response).to redirect_to alice
     end
   end
 

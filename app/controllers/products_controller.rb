@@ -1,32 +1,22 @@
 class ProductsController < ApplicationController
   def index
     @categories = Category.all
-    @products = Product.order(params[:sort_by]).limit(Product::PER_PAGE).offset(params[:offset])
-    @pages = (Product.all.size.to_f / Product::PER_PAGE).ceil
-
-    if params[:offset].nil?
-      @current_page = 1
-    else
-      @current_page = params[:offset].to_i/@products.count + 1
-    end
+    @pages = Product.number_of_pages
+    @current_page_number = params[:page_number].to_i
+    @products = Product.order(params[:sort_by]).products_on_page(@current_page_number)
   end
 
   def search
     @term = params[:search_term]
-    @categories = Category.all
+    @current_page_number = params[:page_number].to_i
     @results = Product.search_by_title(@term)
-    if @results == []
-      @products = @results
-      @pages = 1
-    else
-      @products = @results.limit(Product::PER_PAGE).offset(params[:offset])
-      @pages = (@results.all.size.to_f / Product::PER_PAGE).ceil
-    end
 
-    if params[:offset].nil?
-      @current_page = 1
+    if @results == []
+      @pages = 1
+      @products = @results
     else
-      @current_page = params[:offset].to_i/@products.count + 1
+      @pages = @results.number_of_pages
+      @products = @results.products_on_page(@current_page_number)
     end
   end
 

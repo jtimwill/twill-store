@@ -1,24 +1,24 @@
 <div class = "col-md-offset-4" >
   <ul class="pagination">
     <% if @pages > 1 %>
-      <% if @current_page == 1 %>
+      <% if @current_page_number == 1 %>
         <li><%= link_to "«", "" %></li>
       <% else %>
-        <li><%= link_to "«", search_products_path(offset: Product::PER_PAGE*(@current_page - 2), search_term: @term) %></li>
+        <li><%= link_to "«", search_products_path(page_number: @current_page_number - 1, search_term: @term) %></li>
       <% end %>
 
       <% @pages.times do |index| %>
-        <% if @current_page - 1 == index %>
+        <% if @current_page_number - 1 == index %>
           <li class="disabled"><a href="#"><%= "#{index+1}" %></a></li>
-        <% else %>
-          <li><%= link_to "#{index+1}", search_products_path(offset: index*Product::PER_PAGE, search_term: @term) %></li>
+        <% elsif  (@current_page_number - index) > -2 && (@current_page_number - index) < 4 %>
+          <li><%= link_to "#{index+1}", search_products_path(page_number: index+1, search_term: @term) %></li>
         <% end %>
       <% end %>
 
-      <% if @current_page == @pages %>
+      <% if @current_page_number == @pages %>
         <li><%= link_to "»", "" %></li>
       <% else %>
-        <li><%= link_to "»", search_products_path(offset: Product::PER_PAGE*(@current_page), search_term: @term) %></li>
+        <li><%= link_to "»", search_products_path(page_number: @current_page_number + 1, search_term: @term) %></li>
       <% end %>
     <% end %>
   </ul>

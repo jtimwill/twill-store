@@ -10,11 +10,72 @@ describe ProductsController do
       expect(assigns(:categories)).to eq([category1,category2])
     end
 
-    it "sets @products" do
-      product1 = Fabricate(:product)
-      product2 = Fabricate(:product)
+    it "sets @pages" do
+      category1 = Fabricate(:category)
+      11.times {Fabricate(:product, category_id: category1.id)}
       get :index
-      expect(assigns(:products)).to eq([product1,product2])
+      expect(assigns(:pages)).to eq(2)
+    end
+
+    it "sets @current_page_number" do
+      get :index, page_number: "5"
+      expect(assigns(:current_page_number)).to eq(5)
+    end
+
+    it "sets @products for the page" do
+      11.times {Fabricate(:product)}
+      get :index, page_number: "1", sort_by: "created_at"
+      expect(assigns(:products)).to match_array(Product.limit(10))
+    end
+  end
+
+  describe "GET search" do
+    it "sets @term" do
+      get :search, search_term: "lamborghini", page_number: "5"
+      expect(assigns(:term)).to eq("lamborghini")
+    end
+
+    it "sets @current_page_number" do
+      get :search, search_term: "lamborghini", page_number: "5"
+      expect(assigns(:current_page_number)).to eq(5)
+    end
+
+    it "sets @results" do
+      lamborghini = Fabricate(:product, title: "Lamborghini", description: "Supercar")
+      ferrari = Fabricate(:product, title: "Ferrari", description: "Supercar")
+      get :search, search_term: "lamborghini", page_number: "5"
+      expect(assigns(:results)).to eq([lamborghini])
+    end
+
+    context "with valid results" do
+      before do
+        11.times do |index|
+          Fabricate(:product, title: "a#{index}")
+        end
+        get :search, search_term: "a", page_number: "1"
+      end
+
+      it "sets @pages" do
+        expect(assigns(:pages)).to eq(2)
+      end
+
+      it "sets @products for the page" do
+        expect(assigns(:products)).to match_array(Product.limit(10))
+      end
+    end
+
+    context "when @results = []" do
+      before do
+        get :search, search_term: "", page_number: "1"
+      end
+
+      it "sets @pages" do
+        expect(assigns(:pages)).to eq(1)
+      end
+
+      it "sets @products for the page" do
+        expect(assigns(:products)).to eq([])
+      end
     end
   end
 

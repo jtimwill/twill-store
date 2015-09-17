@@ -9,7 +9,7 @@
       <strong>
         <%= link_to product.title, product_path(product) %><br>
         <font color="DarkRed">$<%= (product.price.to_f/100).round(2) %></font><br>
-        Rating: <%= product.rating %>
+        Rating: <%= product.show_rating %>
       </strong>
     </p>
   </product_format>

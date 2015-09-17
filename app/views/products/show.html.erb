@@ -40,7 +40,7 @@
           <h3>
             <%= @product.title %>
           </h3>
-          Rating: <font color="DarkRed"><%= @product.rating %></font><br>
+          Rating: <font color="DarkRed"><%= @product.show_rating %></font><br>
           Price: <font color="DarkRed">$<%= (@product.price.to_f/100).round(2) %></font>
         </header>
         <p>
