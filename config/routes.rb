@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'pages#front'
   get '/faq', to: 'pages#faq'
 
-  get '/auth/:provider/callback', to: 'sessions#omniauthenticate'
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

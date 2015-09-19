@@ -11,10 +11,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  def omniauthenticate
-    # render text: request.env['omniauth.auth'].to_yaml
+  def omniauth
     begin
-      user = User.from_omniauth(env["omniauth.auth"])
+      user = User.from_omniauth(request.env["omniauth.auth"])
       session[:user_id] = user.id
       flash[:info] = 'You are signed in'
       redirect_to root_path

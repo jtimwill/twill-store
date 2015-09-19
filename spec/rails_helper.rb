@@ -40,3 +40,16 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+OmniAuth.config.test_mode = true
+
+valid_auth_hash = OmniAuth::AuthHash.new({
+  :provider => 'test-provider',
+  :uid => '1234567',
+  :info => {
+   :email => 'joe@bloggs.com',
+   :name => 'Joe Bloggs'
+  }
+})
+
+OmniAuth.config.add_mock(:test, valid_auth_hash)
