@@ -28,8 +28,4 @@ class SessionsController < ApplicationController
     flash[:info] = 'You are signed out.'
     redirect_to root_path
   end
-
-  def oauth_failure
-    redirect_to login_path
-  end
 end
