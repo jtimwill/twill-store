@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
   def omniauth
     begin
-      user = User.from_omniauth(request.env["omniauth.auth"])
+      user = User.omniauthorize(request.env["omniauth.auth"])
       session[:user_id] = user.id
       flash[:info] = 'You are signed in'
       redirect_to root_path

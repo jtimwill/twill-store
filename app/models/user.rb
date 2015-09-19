@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     total_array.sum.round(2)
   end
 
-  def self.from_omniauth(auth_hash)
+  def self.omniauthorize(auth_hash)
     user = find_or_create_by(uid: auth_hash.uid, provider: auth_hash.provider)
     user.username = auth_hash.info.name
     user.email = auth_hash.info.email
