@@ -70,7 +70,8 @@ describe Admin::ProductsController do
       end
 
       it "sets @product" do
-        expect(assigns(:product)).to be_present
+        expect(assigns(:product)).to be_new_record
+        expect(assigns(:product)).to be_instance_of(Product)
       end
 
       it "renders the :new template" do

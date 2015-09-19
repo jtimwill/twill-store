@@ -3,8 +3,8 @@ class ReviewsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    review = @product.reviews.build(review_params.merge!(user: current_user))
-    if review.save
+    @review = @product.reviews.build(review_params.merge!(user: current_user))
+    if @review.save
       @product.add_rating
       redirect_to @product
     else

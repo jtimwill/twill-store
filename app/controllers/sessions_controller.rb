@@ -11,9 +11,26 @@ class SessionsController < ApplicationController
     end
   end
 
+  def omniauthenticate
+    # render text: request.env['omniauth.auth'].to_yaml
+    begin
+      user = User.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = user.id
+      flash[:info] = 'You are signed in'
+      redirect_to root_path
+    rescue
+      flash[:danger] = 'Authentication failure.'
+      redirect_to login_path
+    end
+  end
+
   def destroy
     session[:user_id] = nil
     flash[:info] = 'You are signed out.'
     redirect_to root_path
+  end
+
+  def oauth_failure
+    redirect_to login_path
   end
 end

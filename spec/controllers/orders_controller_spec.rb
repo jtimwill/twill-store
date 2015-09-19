@@ -62,15 +62,6 @@ describe OrdersController do
       let(:action) {post :create}
     end
 
-    # it "sets @order" do
-    #   order = Fabricate(:order)
-    #   product = Fabricate(:product, price: 10000)
-    #   cart_item1 = Fabricate(:cart_item, user_id: alice.id, product_id: product.id, quantity: 1)
-    #   post :create, optionsRadios: shipping_option.id
-    #   expect(assigns(:order)).to be_instance_of(Order)
-    #   expect(Order.last.total).to eq(10799)
-    # end
-
     context "with valid input" do
       let(:charge) {double(:charge, successful?: true)}
       let(:product) {Fabricate(:product, price: 10000)}

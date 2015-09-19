@@ -29,10 +29,6 @@ describe UsersController do
         post :create, user: Fabricate.attributes_for(:user)
       end
 
-      it "sets @user" do
-        expect(assigns(:user)).to be_instance_of(User)
-      end
-
       it "creates the user" do
         expect(User.count).to eq(1)
       end
@@ -52,6 +48,7 @@ describe UsersController do
       end
 
       it "sets @user" do
+        expect(assigns(:user)).to be_new_record
         expect(assigns(:user)).to be_instance_of(User)
       end
 

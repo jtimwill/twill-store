@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, on: :create, length: {minimum: 3}
+  validates :password, presence: true, on: :create, length: {minimum: 3}, unless: ->(user){user.uid.present?}
   has_many :cart_items
   has_many :reviews
   has_many :orders
@@ -17,5 +17,13 @@ class User < ActiveRecord::Base
       item.product.price*item.quantity
     end
     total_array.sum.round(2)
+  end
+
+  def self.from_omniauth(auth_hash)
+    user = find_or_create_by(uid: auth_hash.uid, provider: auth_hash.provider)
+    user.username = auth_hash.info.name
+    user.email = auth_hash.info.email
+    user.save!
+    user
   end
 end

@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   def create
     shipping = ShippingOption.find_by(id: stripe_params[:optionsRadios])
     total = (shipping.cost + current_user.cart_total).to_i
-    @order = Order.new(total: total, user: current_user, reference_id: stripe_params[:stripeToken])
+    order = Order.new(total: total, user: current_user, reference_id: stripe_params[:stripeToken])
 
     charge = StripeWrapper::Charge.create(
       amount: total,
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       description: "Order"
     )
     if charge.successful?
-      @order.save
+      order.save
       AppMailer.delay.send_order_summary_email(current_user)
       flash[:success] = "Order Successful"
       clear_cart

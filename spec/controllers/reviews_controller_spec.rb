@@ -56,6 +56,12 @@ describe ReviewsController do
           expect(assigns(:product)).to eq(product)
         end
 
+        it "sets @review" do
+          post :create, review: {rating: 4}, product_id: product.id
+          expect(assigns(:review)).to be_new_record
+          expect(assigns(:review)).to be_instance_of(Review)
+        end
+
         it "sets @reviews" do
           review = Fabricate(:review, product: product)
           post :create, review: {rating: 4}, product_id: product.id

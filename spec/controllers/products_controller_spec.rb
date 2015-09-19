@@ -95,5 +95,12 @@ describe ProductsController do
       get :show, id: product.id
       expect(assigns(:reviews)).to match_array([review1, review2])
     end
+
+    it "sets @review" do
+      product = Fabricate(:product)
+      get :show, id: product.id
+      expect(assigns(:review)).to be_new_record
+      expect(assigns(:review)).to be_instance_of(Review)
+    end
   end
 end

@@ -66,7 +66,8 @@
   <section class="reviews container">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
-        <%= form_for [@product, Review.new] do |f| %>
+        <%= form_for [@product, @review] do |f| %>
+          <%= render 'shared/errors', obj: @review %>
           <fieldset>
             <div class="form-group">
               <label>Rate this product</label>
