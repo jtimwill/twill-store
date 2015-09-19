@@ -37,4 +37,22 @@ describe User do
       expect(user.cart_total).to eq(0)
     end
   end
+
+  describe "from_omniauth" do
+    let(:auth_hash) do
+      OmniAuth.config.mock_auth[:test]
+    end
+    
+    it "a creates a new user" do
+      user = Fabricate(:user)
+      User.from_omniauth(auth_hash)
+      expect(User.count).to eq(2)
+    end
+
+    it "finds existing user" do
+      user = Fabricate(:user, uid: '1234567', provider: 'test-provider', email: 'joe@bloggs.com', username: 'Joe Bloggs')
+      User.from_omniauth(auth_hash)
+      expect(User.count).to eq(1)
+    end
+  end
 end
