@@ -2,7 +2,7 @@
   <product_format class="col-md-2 text-center">
     <p>
       <%= link_to product_path(product) do %>
-        <%= image_tag(product.small_image_path) %>
+        <%= image_tag(product.small_image_path, class: "img-rounded") %>
       <% end %>
     </p>
     <p>

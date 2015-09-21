@@ -1,119 +1,97 @@
-<%= render 'shared/content_title', title: 'Product Details' %>
-
 <article class="product">
-  <div class="container">
-    <div class="row">
-      <div class="product_large_cover col-sm-7 col-sm-offset-1">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-          </ol>
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <%= image_tag(@product.large_image_path1) %>
-            </div>
-            <div class="item">
-              <%= image_tag(@product.large_image_path2) %>
-            </div>
-            <div class="item">
-              <%= image_tag(@product.large_image_path3) %>
-            </div>
+  <div class="row">
+    <div class="col-sm-7">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <%= image_tag(@product.large_image_path1) %>
           </div>
-          <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+          <div class="item">
+            <%= image_tag(@product.large_image_path2) %>
+          </div>
+          <div class="item">
+            <%= image_tag(@product.large_image_path3) %>
+          </div>
         </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
+    </div>
 
-      <div class="product_info col-sm-3">
-        <header>
-          <h3>
-            <%= @product.title %>
-          </h3>
-          Rating: <font color="DarkRed"><%= @product.show_rating %></font><br>
-          Price: <font color="DarkRed">$<%= (@product.price.to_f/100).round(2) %></font>
-        </header>
-        <p>
-          <%= @product.description %>
-        </p>
-        <div class="actions">
-          <%= form_tag cart_items_path do %>
-            <%= label_tag :quantity, "Quantity" %>
-            <%= select_tag :quantity, options_for_select((1..9), selected: 1) %>
-            <%= hidden_field_tag(:product_id, @product.id) %>
-            <%= submit_tag "Add to Cart", class: 'btn btn-primary' %>
-          <% end %>
+    <div class="product_info col-sm-4">
+      <header>
+        <h3>
+          <%= @product.title %>
+        </h3>
+        Rating: <font color="DarkRed"><%= @product.show_rating %></font><br>
+        Price: <font color="DarkRed">$<%= (@product.price.to_f/100).round(2) %></font>
+      </header>
+      <p>
+        <%= @product.description %>
+      </p>
+      <div class="actions">
+        <%= form_tag cart_items_path do %>
+          <%= label_tag :quantity, "Quantity" %>
+          <%= select_tag :quantity, options_for_select((1..9), selected: 1) %>
+          <%= hidden_field_tag(:product_id, @product.id) %>
+          </br>
+          </br>
+          <%= submit_tag "Add to Cart", class: 'btn btn-primary' %>
+        <% end %>
         </br>
-
-          <% if logged_in? and current_user.admin? %>
-            <%= link_to "Delete Product", admin_product_path(id: @product.id), method: :delete, class: 'btn btn-danger'%>
-          <% end %>
-        </div>
+        <% if logged_in? and current_user.admin? %>
+          <%= link_to "Delete Product", admin_product_path(id: @product.id), method: :delete, class: 'btn btn-danger'%>
+        <% end %>
       </div>
     </div>
   </div>
 </article>
-  <section class="reviews container">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-        <%= form_for [@product, @review] do |f| %>
-          <%= render 'shared/errors', obj: @review %>
-          <fieldset>
-            <div class="form-group">
-              <label>Rate this product</label>
-              <div class="row">
-                <div class="col-sm-3">
-                  <%= f.select :rating, options_for_product_reviews %>
-                </div>
-              </div>
+<section class="reviews container">
+  <div class="row">
+    <legend>Create Review</legend>
+    <div class="col-sm-6">
+      <%= form_for [@product, @review] do |f| %>
+        <%= render 'shared/errors', obj: @review %>
+          <div class="form-group">
+            <label>Rate this product</label>
+            <div class="">
+              <%= f.select :rating, options_for_product_reviews, class: "form-control" %>
             </div>
-            <div class="form-group">
-              <label>Write Review</label>
-              <div class="row">
-                <div class="col-sm-8">
-                  <%= f.text_area :content, rows: 6, class: "form-control" %>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-          <fieldset class="form-group actions clearfix">
-            <%= submit_tag "Submit", class: 'btn btn-primary' %>
-            <%= link_to "Cancel", @product %>
-          </fieldset>
-        <% end %>
-        <header>
-          <h3><%= "User Reviews (#{@reviews.count})" %></h3>
-        </header>
-        <ul>
-          <% @reviews.each do |review| %>
-            <article class="review">
-              <li class="row">
-                <div class="span2">
-                  <span><%= "Rating: #{review.rating}/5" %></span>
-                  <p>
-                    by
-                    <%= link_to review.user.username, review.user %>
-                  </p>
-                </div>
-                <div class="span8">
-                  <p>
-                    <%= review.content %>
-                  </p>
-                </div>
-              </li>
-            </article>
-          <% end %>
-        </ul>
-      </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :title, "Title" %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :title, "Content" %>
+            <%= f.text_area :content, rows: 6, class: "form-control" %>
+          </div>
+          <%= f.submit "Submit", class: 'btn btn-primary' %>
+          <%= link_to "Cancel", @product %>
+      <% end %>
     </div>
-  </section>
+  <legend><%= "User Reviews (#{@reviews.count})" %></legend>
+    <% @reviews.each do |review| %>
+      <article class="review">
+        <span><%= review.title %></span>
+        <br><%= "Rating: #{review.rating}/5 " %><br>
+        <p><small>By <%= link_to review.user.username, review.user %></small></p>
+        <p><%= review.content %></p>
+      </article>
+    <% end %>
+  </div>
+</section>

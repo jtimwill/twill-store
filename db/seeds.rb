@@ -62,5 +62,5 @@ ShippingOption.create(title: "Free Shipping (5-8 business days)", cost: 0)
 bobby = User.create(username: "Bobby Smith", password: "password", email: "bobby@example.com")
 steve = User.create(username: "Steve Max", password: "password", email: "steve@example.com")
 
-Review.create(user_id: bobby.id, product: Product.first, rating: 3, content: "This product is average")
-Review.create(user_id: steve.id, product: Product.first, rating: 1, content: "This product is trash")
+Review.create(user_id: bobby.id, product: Product.first, rating: 3, title: "review1" content: "This product is average")
+Review.create(user_id: steve.id, product: Product.first, rating: 1, title: "review2" content: "This product is trash")
