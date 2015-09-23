@@ -16,47 +16,31 @@
   <li class=""><a href="#reviews" data-toggle="tab" aria-expanded="true"><h3>Reviews</h3></a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade active in" id="orders">
-    <p>
-      <section class="reviews container">
-        <div class="row">
-          <% @user.orders.each do |order| %>
-            <article class="review">
-              <div class="col-sm-2">
-                <p>
-                  Date: <%= display_datetime(order.created_at) %>
-                </p>
-              </div>
-              <div class="col-sm-8">
-                <p>
-                  Total: $<%= order.total.to_f/100 %>
-                </p>
-              </div>
-            </article>
-          <% end %>
-        </div>
-      </section>
-    </p>
+  <div class="tab-pane fade active in" id="orders"></br>
+    <% @user.orders.each do |order| %>
+      <a href="#" class="list-group-item">
+        <strong>Date: </strong><%= display_datetime(order.created_at) %></br>
+        <strong>Total: </strong>$<%= order.total.to_f/100 %>
+      </a>
+    <% end %>
   </div>
-  <div class="tab-pane fade active in" id="reviews">
-    <p>
-      <section class="reviews container">
-        <div class="row">
-          <% @user.reviews.each do |review| %>
-            <article class="review">
-              <div class="col-sm-8">
-                <span><%= review.title %></span>
-                <br><%= "Rating: #{review.rating}/5 " %><br>
-                <p><small>By <%= link_to review.user.username, review.user %></small></p>
-                <p><%= review.content %></p>
-              </div>
-              <div class="col-sm-2 col-sm-offset-2">
-                <%= link_to "Delete Review", product_review_path(product_id: review.product, id: review.id), method: :delete, class: 'btn btn-default'%>
-              </div>
-            </article>
-          <% end %>
-        </div>
-      </section>
-    </p>
+  <div class="tab-pane fade" id="reviews">
+    <section class="reviews">
+      <% @user.reviews.each do |review| %>
+        <article class="review">
+          <div class="row">
+            <div class="col-sm-10">
+              <span><%= review.title %></span>
+              </br><%= "Rating: #{review.rating}/5 " %></br>
+              <small>By <%= link_to review.user.username, review.user %></small>
+              <p><%= review.content %></p>
+            </div>
+            <div class="col-sm-2">
+              <%= link_to "Delete Review", product_review_path(product_id: review.product, id: review.id), method: :delete, class: 'btn btn-default'%>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </section>
   </div>
 </div>

@@ -16,6 +16,34 @@
  */
 
 @import "bootstrap-sprockets";
-@import "bootswatch/cosmo/variables";
+@import "bootswatch/cerulean/variables";
 @import "bootstrap";
-@import "bootswatch/cosmo/bootswatch";
+@import "bootswatch/cerulean/bootswatch";
+
+legend {
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+}
+
+.jumbotron{
+  margin-bottom: 100px;
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+
+.push{
+  height: 4em;
+}

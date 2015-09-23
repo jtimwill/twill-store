@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def dollars(cents)
     dollars = cents.to_f/100
-    "$ #{dollars}"
+    "$#{dollars}"
   end
 
   def display_datetime(dt)
