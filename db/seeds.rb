@@ -48,7 +48,7 @@ end
                  large_image_path2: large_images.sample,
                  large_image_path3: large_images.sample,
                  price: rand(1999..9999),
-                 category_id: odds.id,
+                 category_id: ends.id,
                  category: ends.name
                 #  rating: rand(1.00..5.00)
                 )
