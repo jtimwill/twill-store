@@ -5,7 +5,9 @@ describe User do
   it {should validate_presence_of(:email)}
   it {should validate_presence_of(:password)}
   it {should validate_presence_of(:username)}
+  it {should validate_uniqueness_of(:username)}
   it {should validate_presence_of(:email)}
+  it {should validate_uniqueness_of(:email)}
   it {should have_many(:cart_items)}
   it {should have_many(:reviews)}
   it {should have_many(:orders)}
@@ -35,24 +37,6 @@ describe User do
 
     it "returns zero if the cart is empty" do
       expect(user.cart_total).to eq(0)
-    end
-  end
-
-  describe "omniauthorize" do
-    let(:auth_hash) do
-      OmniAuth.config.mock_auth[:test]
-    end
-
-    it "a creates a new user" do
-      user = Fabricate(:user)
-      User.omniauthorize(auth_hash)
-      expect(User.count).to eq(2)
-    end
-
-    it "finds existing user" do
-      user = Fabricate(:user, uid: '1234567', provider: 'test-provider', email: 'joe@bloggs.com', username: 'Joe Bloggs')
-      User.omniauthorize(auth_hash)
-      expect(User.count).to eq(1)
     end
   end
 end

@@ -47,7 +47,7 @@ describe SessionsController do
   describe "GET omniauth" do
     context "successful authentication and new user" do
       before do
-        request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:test]
+        request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:valid]
         get :omniauth, provider: "test"
       end
 
@@ -63,50 +63,65 @@ describe SessionsController do
         expect(flash[:info]).to eq('You are signed in')
       end
 
-      it "redrects to home page" do
+      it "redirects to home page" do
         expect(response).to redirect_to root_path
       end
     end
 
     context "successful authentication and existing user" do
       before do
-        request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:test]
+        request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:valid]
       end
 
       it "does not create a new user" do
         Fabricate(:user, uid: '1234567', provider: 'test-provider', email: 'joe@bloggs.com', username: 'Joe Bloggs')
-        get :omniauth, provider: "test"
+        get :omniauth, provider: "provider"
         expect(User.count).to eq(1)
       end
 
       it "puts the new signed in user in the session" do
-        get :omniauth, provider: "test"
+        get :omniauth, provider: "provider"
         expect(session[:user_id]).to eq(User.last.id)
       end
 
       it "sets the notice" do
-        get :omniauth, provider: "test"
+        get :omniauth, provider: "provider"
         expect(flash[:info]).to eq('You are signed in')
       end
 
-      it "redrects to home page" do
-        get :omniauth, provider: "test"
+      it "redirects to home page" do
+        get :omniauth, provider: "provider"
         expect(response).to redirect_to root_path
       end
     end
 
-    context "failed authentication" do
+    context "failed authentication caused by invalid hash" do
       before do
-        OmniAuth.config.mock_auth[:invalid] = :invalid_credentials
         request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:invalid]
-        get :omniauth, provider: "invalid"
+        get :omniauth, provider: "provider"
       end
 
       it "sets the error message" do
-        expect(flash[:danger]).to eq('Authentication failure.')
+        expect(flash[:danger]).to be_present
       end
 
-      it "redrects to the sign in page" do
+      it "redirects to the sign in page" do
+        expect(response).to redirect_to login_path
+      end
+    end
+
+    context "failed authentication caused by existing user" do
+      before do
+        Fabricate(:user, email: 'joe@bloggs.com', username: 'Joe Bloggs')
+        request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:valid]
+        get :omniauth, provider: "provider"
+      end
+
+      it "sets the error message" do
+        expect(flash[:danger]).to eq('Validation failed: Username has already been taken, Email has already been taken')
+      end
+
+      it "redirects to the sign in page" do
         expect(response).to redirect_to login_path
       end
     end

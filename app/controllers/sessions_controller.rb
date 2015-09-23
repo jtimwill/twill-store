@@ -12,14 +12,22 @@ class SessionsController < ApplicationController
   end
 
   def omniauth
-    begin
-      user = User.omniauthorize(request.env["omniauth.auth"])
+    auth_hash = request.env["omniauth.auth"]
+    if User.find_by(uid: auth_hash.uid, provider: auth_hash.provider)
       session[:user_id] = user.id
       flash[:info] = 'You are signed in'
       redirect_to root_path
-    rescue
-      flash[:danger] = 'Authentication failure.'
-      redirect_to login_path
+    else
+      begin
+        user = User.new(uid: auth_hash.uid, provider: auth_hash.provider, username: auth_hash.info.name, email: auth_hash.info.email)
+        user.save!
+        session[:user_id] = user.id
+        flash[:info] = 'You are signed in'
+        redirect_to root_path
+      rescue => e
+        flash[:danger] = "#{e.message}"
+        redirect_to login_path
+      end
     end
   end
 

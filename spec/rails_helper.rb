@@ -52,4 +52,15 @@ valid_auth_hash = OmniAuth::AuthHash.new({
   }
 })
 
-OmniAuth.config.add_mock(:test, valid_auth_hash)
+OmniAuth.config.add_mock(:valid, valid_auth_hash)
+
+invalid_auth_hash = OmniAuth::AuthHash.new({
+  :provider => nil,
+  :uid => nil,
+  :info => {
+   :email => nil,
+   :name => nil
+  }
+})
+
+OmniAuth.config.add_mock(:invalid, invalid_auth_hash)
