@@ -9,6 +9,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     {
       :name => "google",
       :scope => "email, profile"
-      access_type: => "online"
     }
 end
