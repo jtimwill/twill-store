@@ -35,7 +35,7 @@ ends = Category.create(name: "Ends")
                  price: rand(1999..9999),
                  category_id: odds.id,
                  category: odds.name,
-                 rating: rand(1.00..5.00)
+                #  rating: rand(1.00..5.00)
                 )
 end
 
@@ -50,7 +50,7 @@ end
                  price: rand(1999..9999),
                  category_id: odds.id,
                  category: ends.name,
-                 rating: rand(1.00..5.00)
+                #  rating: rand(1.00..5.00)
                 )
 end
 
