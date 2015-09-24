@@ -33,12 +33,16 @@ describe UsersController do
         expect(User.count).to eq(1)
       end
 
+      it "puts the signed in user in the session" do
+        expect(session[:user_id]).to eq(User.last.id)
+      end
+
       it "redirects to the root path" do
         expect(response).to redirect_to root_path
       end
 
       it "displays welcome message" do
-        expect(flash[:success]).to eq("You are registered.")
+        expect(flash[:success]).to eq("You are registered and signed in.")
       end
     end
 
