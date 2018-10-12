@@ -7,7 +7,7 @@ describe StripeWrapper do
       card: {
         number: "4242424242424242",
         exp_month: 6,
-        exp_year: 2018,
+        exp_year: 2020,
         cvc: 314
       }
     ).id
@@ -18,7 +18,7 @@ describe StripeWrapper do
       card: {
         number: "4000000000000002",
         exp_month: 6,
-        exp_year: 2018,
+        exp_year: 2020,
         cvc: 314
       }
     ).id

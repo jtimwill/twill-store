@@ -14,8 +14,8 @@ gem 'sidekiq'
 gem 'unicorn'
 gem 'sentry-raven', :git => "https://github.com/getsentry/raven-ruby.git"
 gem 'stripe'
-# gem 'figaro'
-# gem 'draper'
+gem 'figaro'
+gem 'draper'
 gem 'stripe_event'
 gem 'bootswatch-rails'
 gem 'celluloid', '0.16.0'
@@ -45,6 +45,9 @@ end
 group :test do
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'database_cleaner', :git => "https://github.com/DatabaseCleaner/database_cleaner"
 end
 
 group :production, :staging do
