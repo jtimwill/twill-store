@@ -4,22 +4,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-require 'capybara/rails'
-# require 'capybara/rspec'
-require 'capybara/email/rspec'
 require 'sidekiq/testing/inline'
-require 'vcr'
 
-Capybara.server_port = 52662
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
-
-VCR.configure do |config|
-  config.cassette_library_dir = 'spec/cassettes'
-  config.hook_into :webmock
-  config.configure_rspec_metadata!
-  config.ignore_localhost = true
-end
-ActiveRecord::Migration.maintain_test_schema!
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -30,23 +17,15 @@ end
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.use_transactional_fixtures = false
-  # config.infer_base_class_for_anonymous_controllers = false
-  # config.order = "random"
+  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+end
 
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before(:each) do |example|
-    DatabaseCleaner.strategy= example.metadata[:js] ? :truncation : :transaction
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
   end
 end
 
@@ -73,10 +52,3 @@ invalid_auth_hash = OmniAuth::AuthHash.new({
 })
 
 OmniAuth.config.add_mock(:invalid, invalid_auth_hash)
-
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
-end
