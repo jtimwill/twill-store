@@ -14,7 +14,6 @@ gem 'unicorn'
 gem 'sentry-raven', :git => "https://github.com/getsentry/raven-ruby.git"
 gem 'stripe'
 gem 'figaro'
-gem 'stripe_event'
 gem 'bootswatch-rails'
 gem 'celluloid', '0.16.0'
 gem 'omniauth-facebook'
