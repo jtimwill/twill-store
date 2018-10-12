@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'faker'
+  gem 'letter_opener'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
