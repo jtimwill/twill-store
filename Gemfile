@@ -4,7 +4,6 @@ gem 'rails', '5.1.4'
 gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'turbolinks', '~> 5'
-gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
@@ -15,7 +14,6 @@ gem 'unicorn'
 gem 'sentry-raven', :git => "https://github.com/getsentry/raven-ruby.git"
 gem 'stripe'
 gem 'figaro'
-gem 'draper'
 gem 'stripe_event'
 gem 'bootswatch-rails'
 gem 'celluloid', '0.16.0'
@@ -35,10 +33,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'thin'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'foreman'
 end
 
