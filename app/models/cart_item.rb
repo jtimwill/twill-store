@@ -1,4 +1,4 @@
-class CartItem < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :product
+class CartItem < ApplicationRecord
+  belongs_to :user, optional: true
+  belongs_to :product, optional: true
 end

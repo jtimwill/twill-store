@@ -1,0 +1,111 @@
+1250513b91af3e42dd871fe78819af0af084111a		branch '0-12-2' of https://github.com/getsentry/raven-ruby
+bf2b890ac95d3939926c98d458979e4014d983b2		branch '0-12-stable' of https://github.com/getsentry/raven-ruby
+14fd97f84f218a8ff16024aadea3430eb1dd169f		branch '0.15.2' of https://github.com/getsentry/raven-ruby
+5e62c1126592c82c080634dc1a6a050d858eabe6		branch '0.6.x' of https://github.com/getsentry/raven-ruby
+6b46e7cd506d1e0feb0b149d7394c3b095711c3d		branch '370-fix' of https://github.com/getsentry/raven-ruby
+17948d53ffa3cf251fd762f71a835104c386b7c2		branch 'activejob-refix' of https://github.com/getsentry/raven-ruby
+7c8475e2faf538fc2d8d572979888f25a667c5a6		branch 'always-detect-root' of https://github.com/getsentry/raven-ruby
+556a070fc886a94a3795f5b152b7277f63792edc		branch 'async-clean-for-json' of https://github.com/getsentry/raven-ruby
+c8abf022cec526c43aa6de4e4b560ce9c6148e02		branch 'backtrace-tests' of https://github.com/getsentry/raven-ruby
+28bcba1b0169a4146d099f47382b3235d6e5687c		branch 'binding-of-caller' of https://github.com/getsentry/raven-ruby
+3658dd8ae7c10bab41a4c6ddb93abe487eef8620		branch 'bundler-fix' of https://github.com/getsentry/raven-ruby
+e5c39eb3724fd7d1293464b4c3947a9d44d0c62a		branch 'cleanup-rails' of https://github.com/getsentry/raven-ruby
+2383f932c6cddf7a7f70be4b540e2801ce728de1		branch 'content-length' of https://github.com/getsentry/raven-ruby
+baeb7534b147f41a725d01d031f1bb1672a2a500		branch 'convert-binary' of https://github.com/getsentry/raven-ruby
+472ebb62bab6ebf0ff4008be9d55c8267e2ffed1		branch 'cookie-spot' of https://github.com/getsentry/raven-ruby
+c7f43bbeb8961532216d50fbc596b57de126a5a6		branch 'deep-merge-new' of https://github.com/getsentry/raven-ruby
+0b8c06a851021b554929ce788c515618d27180ed		branch 'doc-regex-like-strings' of https://github.com/getsentry/raven-ruby
+34461e4050f5e46c3cf7237f80f70ab1a88dc4d0		branch 'event-limits' of https://github.com/getsentry/raven-ruby
+45ccc5338d4a299e48d380a1cafa4e1b84b68359		branch 'exclude-all-4xx' of https://github.com/getsentry/raven-ruby
+32e22b4cf4892de798ef34301a357449269f6ec2		branch 'excluded-sanitization-fields' of https://github.com/getsentry/raven-ruby
+9262feb54648625e14ff34ef9d8a08bbfaf0c014		branch 'fix-memory-leak' of https://github.com/getsentry/raven-ruby
+67fdbc83284d66a361f040c97d9e0930e6b5586b		branch 'heroku-log-dyno' of https://github.com/getsentry/raven-ruby
+62ee180b2ec9618397ca6ec52a11485244950dac		branch 'master' of https://github.com/getsentry/raven-ruby
+8cdb8994199b0614f74e959b9eda4337b0e8ed9e		branch 'rails-culprit-web' of https://github.com/getsentry/raven-ruby
+aaaa9e67290a9fcfe0702e2d1003dfa81bb8585f		branch 'rails-logger-fix' of https://github.com/getsentry/raven-ruby
+de8a832cb7e3dd5970e7433a940728abb0cbfff6		branch 'rails-test-specify' of https://github.com/getsentry/raven-ruby
+e31190268df951a25802be7593dea5f1f411b890		branch 'rails2' of https://github.com/getsentry/raven-ruby
+a0642d56c126b579df58bd4f99cfb0707a949bf1		branch 'random-test-fails' of https://github.com/getsentry/raven-ruby
+1c5ae23d17304199c7022dd30909cbdc9a30646a		branch 'ravenexe' of https://github.com/getsentry/raven-ruby
+cd21e404fefa8c13d4b421f38072919097dc9288		branch 'readme-update' of https://github.com/getsentry/raven-ruby
+8ef118facf639db35a3572f2592f7efc7bb2eba4		branch 'refactor-event' of https://github.com/getsentry/raven-ruby
+a59e192ab9ad5449c147d5114b1e3228b9f25f56		branch 'refactor-event-again' of https://github.com/getsentry/raven-ruby
+802d1afc68c8df68461d3d19715aa839ac7b9818		branch 'releases/0.15.x' of https://github.com/getsentry/raven-ruby
+01b5a1449a8c7befd060b40fc2bfd45a308f579c		branch 'remove-duptests' of https://github.com/getsentry/raven-ruby
+6584f32b577ef00ffaad5d19443fb23edce9a8f9		branch 'sample-rate' of https://github.com/getsentry/raven-ruby
+7fa5189012329df02a6982acf724c6b15255969c		branch 'sanitize-accepts-proc' of https://github.com/getsentry/raven-ruby
+140ed6b4115c08d599016badb0d8e57000e29b91		branch 'sdk-name-change' of https://github.com/getsentry/raven-ruby
+67a421a33db95f4a5b44c24a79b9d70d54ade436		branch 'sidekiq-int' of https://github.com/getsentry/raven-ruby
+ddad59b3fe30db0b80f8a6ac90ebb73025df2d87		branch 'spec-helper-no-integrations' of https://github.com/getsentry/raven-ruby
+d9d823b5cdf0d1d7738202f89dbf9a62fbff51b8		branch 'v3' of https://github.com/getsentry/raven-ruby
+5a950a3a47f5dde605637de714dd6ec0d5b97c82	not-for-merge	tag '0.10.1' of https://github.com/getsentry/raven-ruby
+5b403df7c1a34794bd88d8b6471ce8d61015ba4e	not-for-merge	tag '0.11.0' of https://github.com/getsentry/raven-ruby
+dbc9a4b27d671067992be06a3821adab2ec3aae8	not-for-merge	tag '0.11.2' of https://github.com/getsentry/raven-ruby
+ff3f5a7a9cbb036b13933c6ff3a61ee4b2300aaa	not-for-merge	tag '0.12.0' of https://github.com/getsentry/raven-ruby
+f4e269c1a46b3402013a91911a401c44846594d4	not-for-merge	tag '0.12.1' of https://github.com/getsentry/raven-ruby
+1250513b91af3e42dd871fe78819af0af084111a	not-for-merge	tag '0.12.2' of https://github.com/getsentry/raven-ruby
+ee74ce968f60a6480db55d6bc5eb66d8ef7ee41b	not-for-merge	tag '0.12.3' of https://github.com/getsentry/raven-ruby
+20c5d92b2b1327afa181f913cdbbd44b861fdd00	not-for-merge	tag '0.13.0' of https://github.com/getsentry/raven-ruby
+e3e0cf474c8b4bd0b548be0241dfdbe734d01795	not-for-merge	tag '0.13.1' of https://github.com/getsentry/raven-ruby
+3820b3d0fe7441743153d759e8ee00b30b7f62bf	not-for-merge	tag '0.13.2' of https://github.com/getsentry/raven-ruby
+169b5d91fb75b8912d0e19094c8094eb5e00b8ed	not-for-merge	tag '0.13.3' of https://github.com/getsentry/raven-ruby
+a7663b419825e28f0191c6727bfb2c1dfdfd5b45	not-for-merge	tag '0.14.0' of https://github.com/getsentry/raven-ruby
+8acf47ea55383a5dbd3a7ee74b17c5e3b28f9846	not-for-merge	tag '0.15.0' of https://github.com/getsentry/raven-ruby
+ebc72f0a977b68c4a56bd661b23917a25495d6b4	not-for-merge	tag '0.15.1' of https://github.com/getsentry/raven-ruby
+e5f865cb03af2758d7c7963565792afad591d3d1	not-for-merge	tag '0.15.3' of https://github.com/getsentry/raven-ruby
+e0b16f8fb5faaac1db6ab6f27695791c31187989	not-for-merge	tag '0.15.5' of https://github.com/getsentry/raven-ruby
+8886b7cdc7b7bc1585409cd2b0f3ab2aeb8abe85	not-for-merge	tag '0.15.6' of https://github.com/getsentry/raven-ruby
+3b590594bac2720be9233b85ee6db63e9e7ed2de	not-for-merge	tag '0.3.1' of https://github.com/getsentry/raven-ruby
+8cdccd40ddf55d3265a1ecc5e25312d49b8be44f	not-for-merge	tag '0.4.0' of https://github.com/getsentry/raven-ruby
+a034d1b80343be88b8f91580694997c92599c3a5	not-for-merge	tag '0.4.1' of https://github.com/getsentry/raven-ruby
+ab0e8e5a14c416d38686de9a20f436e005efe735	not-for-merge	tag '0.4.2' of https://github.com/getsentry/raven-ruby
+9cb9e9275dc49032e9f5971cd51f4aa739620e8f	not-for-merge	tag '0.4.3' of https://github.com/getsentry/raven-ruby
+bdc82b4d889ba47c7165684224075eceaa9b2f2a	not-for-merge	tag '0.4.4' of https://github.com/getsentry/raven-ruby
+5e96c445dffb8b79e711a207c53aa0e3e79cb704	not-for-merge	tag '0.4.5' of https://github.com/getsentry/raven-ruby
+40be5e8458862a03d1b2bfb44d3e4536fdc9f67e	not-for-merge	tag '0.4.6' of https://github.com/getsentry/raven-ruby
+6665ee46c1cf7e056c74dea05f274e47f248a4dd	not-for-merge	tag '0.4.7' of https://github.com/getsentry/raven-ruby
+3fa7d30c205da125715081bd44f67e62327927d2	not-for-merge	tag '0.4.8' of https://github.com/getsentry/raven-ruby
+e865f25cf5a6ae1d0350694f1dd4e3544054c6c6	not-for-merge	tag '0.5.0' of https://github.com/getsentry/raven-ruby
+69c6388c84ca627d2653d253b7181098bb6549b3	not-for-merge	tag '0.6.0' of https://github.com/getsentry/raven-ruby
+574158ebf662438d7720fc47be983f57a1429e15	not-for-merge	tag '0.6.1' of https://github.com/getsentry/raven-ruby
+47b79f7795fdd1d67219786c432c68d0b62e885b	not-for-merge	tag '0.7.1' of https://github.com/getsentry/raven-ruby
+a4d2ae59ce9f92578843b6536f816e9ee2403d48	not-for-merge	tag '0.8.0' of https://github.com/getsentry/raven-ruby
+aa955fd2bd4e85583ff538c365a591a9077ba12b	not-for-merge	tag '0.9.0' of https://github.com/getsentry/raven-ruby
+33c33c898da5ce057fb7cd8c8249ddaf30273784	not-for-merge	tag '0.9.1' of https://github.com/getsentry/raven-ruby
+84755dd1537195de2275d9677ecd8fc311111d46	not-for-merge	tag '0.9.2' of https://github.com/getsentry/raven-ruby
+9f8c309c64c4d468d944c1438abac0130fdc6dd1	not-for-merge	tag '0.9.3' of https://github.com/getsentry/raven-ruby
+d1e7f397b982702623c37e49ba0582d3c80636dc	not-for-merge	tag '0.9.4' of https://github.com/getsentry/raven-ruby
+1cc0a7d7474c97f84af3bba1b784c95748a55703	not-for-merge	tag '1.0.0' of https://github.com/getsentry/raven-ruby
+782a51e728a2223f1fc5e05192c7619a920509e4	not-for-merge	tag '1.1.0' of https://github.com/getsentry/raven-ruby
+7c7d2512b9c6a850ef5d8a8e3ad3545a3c7fd30e	not-for-merge	tag '1.2.1' of https://github.com/getsentry/raven-ruby
+238b1738a0767c1b84f839ef802dcc1ec50ecdf9	not-for-merge	tag 'v0.1' of https://github.com/getsentry/raven-ruby
+3059d1788cdec703a6367c74027333a2aac1987e	not-for-merge	tag 'v0.2' of https://github.com/getsentry/raven-ruby
+4bb419adcae636b0f8c787cc4a1e4ea7a5c6afd3	not-for-merge	tag 'v1.2.0' of https://github.com/getsentry/raven-ruby
+fef2e58037b2c34fb00f4756e4ca2af26057f107	not-for-merge	tag 'v1.2.1' of https://github.com/getsentry/raven-ruby
+231fbf7ccce995248856ccda75a7f2b0e96ba4a4	not-for-merge	tag 'v1.2.2' of https://github.com/getsentry/raven-ruby
+9851abaa407dffcbe54779552a62630dfd9780fd	not-for-merge	tag 'v1.2.3' of https://github.com/getsentry/raven-ruby
+a262bf4de22566764beae8ab5114113d0d72319a	not-for-merge	tag 'v2.0.0' of https://github.com/getsentry/raven-ruby
+18f131f2ab74b507e5a54ce6221da241cadbbb8a	not-for-merge	tag 'v2.0.1' of https://github.com/getsentry/raven-ruby
+2fe5b0f50a12bd80770ce2aeb6c392120979cb12	not-for-merge	tag 'v2.0.2' of https://github.com/getsentry/raven-ruby
+13b293e724426e10c71119bb04529a689cfe03bf	not-for-merge	tag 'v2.1.0' of https://github.com/getsentry/raven-ruby
+cbf4e02ba3c80792916f7333bb6f613371642750	not-for-merge	tag 'v2.1.1' of https://github.com/getsentry/raven-ruby
+ed6ff14322f69213e9b2842b1056aca6535430ab	not-for-merge	tag 'v2.1.2' of https://github.com/getsentry/raven-ruby
+1bb6917df8f4b197abd091982a69a473e0ddcf72	not-for-merge	tag 'v2.1.3' of https://github.com/getsentry/raven-ruby
+8440f1876b854289da6126bb008e2a6f59ed657a	not-for-merge	tag 'v2.1.4' of https://github.com/getsentry/raven-ruby
+158662c74e923c910f0f462fd5dabd98b8272422	not-for-merge	tag 'v2.2.0' of https://github.com/getsentry/raven-ruby
+c1266f39342924d0f4c0ccab85f9c4c394e981fa	not-for-merge	tag 'v2.3.0' of https://github.com/getsentry/raven-ruby
+7405a4a786904b614cdcc3b7d31ec49a378e413a	not-for-merge	tag 'v2.3.1' of https://github.com/getsentry/raven-ruby
+a8da5387b727081bad6d56cfd1f5df09d3c777e0	not-for-merge	tag 'v2.4.0' of https://github.com/getsentry/raven-ruby
+8a31cdc7dd0aefa76816efd6b1d4bad7f11bfd04	not-for-merge	tag 'v2.5.0' of https://github.com/getsentry/raven-ruby
+5c21f6e2f578d38c1daa697eceb96defb3fc08d8	not-for-merge	tag 'v2.5.1' of https://github.com/getsentry/raven-ruby
+13d1e78c620043496c1575a1bb8f4305056e205b	not-for-merge	tag 'v2.5.2' of https://github.com/getsentry/raven-ruby
+f0ad9ddf3a68159cec001e6f37ae17b664729daf	not-for-merge	tag 'v2.5.3' of https://github.com/getsentry/raven-ruby
+1a1a6977e04ce5cfc32b551d65e3cbc9dad03490	not-for-merge	tag 'v2.6.0' of https://github.com/getsentry/raven-ruby
+a2ae2b424f8783b9f1c4b8a11e9f45712665577a	not-for-merge	tag 'v2.6.1' of https://github.com/getsentry/raven-ruby
+7b22d7ddc82f6a2ea50aee35e2d9798f99dc48d9	not-for-merge	tag 'v2.6.2' of https://github.com/getsentry/raven-ruby
+20fff815c6c0eab428a5d04a16a220937dabf569	not-for-merge	tag 'v2.6.3' of https://github.com/getsentry/raven-ruby
+4ae3eac202df088aa764ab2406aed7a5225ae650	not-for-merge	tag 'v2.7.0' of https://github.com/getsentry/raven-ruby
+5113805bd4c5df4cc8a637dfa87980e4ada90eb1	not-for-merge	tag 'v2.7.1' of https://github.com/getsentry/raven-ruby
+170a507e105c610a1c38e74409b30b6b8f8f7377	not-for-merge	tag 'v2.7.2' of https://github.com/getsentry/raven-ruby
+9acdcf8292b1f731d99e2e7f0a0856cb6c839f43	not-for-merge	tag 'v2.7.3' of https://github.com/getsentry/raven-ruby
+5f3c9b1f412e834cc1f22173140164d6ccad22b5	not-for-merge	tag 'v2.7.4' of https://github.com/getsentry/raven-ruby

@@ -1,16 +1,17 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
+# require 'capybara/rspec'
 require 'capybara/email/rspec'
 require 'sidekiq/testing/inline'
 require 'vcr'
 
 Capybara.server_port = 52662
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
@@ -20,12 +21,20 @@ VCR.configure do |config|
 end
 ActiveRecord::Migration.maintain_test_schema!
 
+begin
+  ActiveRecord::Migration.maintain_test_schema!
+rescue ActiveRecord::PendingMigrationError => e
+  puts e.to_s.strip
+  exit 1
+end
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = false
-  config.infer_base_class_for_anonymous_controllers = false
-  config.order = "random"
+  # config.infer_base_class_for_anonymous_controllers = false
+  # config.order = "random"
   config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -64,3 +73,10 @@ invalid_auth_hash = OmniAuth::AuthHash.new({
 })
 
 OmniAuth.config.add_mock(:invalid, invalid_auth_hash)
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end

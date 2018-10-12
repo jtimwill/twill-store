@@ -12,11 +12,12 @@
 !/log/.keep
 /tmp
 
-# Ignore the pg database
-/config/database.yml
-
 # Ignore application configuration
 /config/application.yml
 
 # misc
 .DS_Store
+
+# Ignore databases
+development.sqlite3
+test.sqlite3

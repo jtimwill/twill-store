@@ -1,5 +1,4 @@
-class AppMailer < ActionMailer::Base
-  default from: "info@twill-store.com"
+class AppMailer < ApplicationMailer
 
   def send_order_summary_email(user)
     @user = user

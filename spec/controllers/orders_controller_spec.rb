@@ -71,33 +71,33 @@ describe OrdersController do
       end
 
       it "creates an order" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(Order.count).to eq(1)
       end
 
       it "sends out an email" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(ActionMailer::Base.deliveries.last.to).to eq(["alice@example.com"])
       end
 
       it "sends out email containing the user's name and order total" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(ActionMailer::Base.deliveries.last.body).to include("Alice")
         expect(ActionMailer::Base.deliveries.last.body).to include("$707.99")
       end
 
       it "displays the success message" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(flash[:success]).to eq("Order Successful")
       end
 
       it "clears the user's cart" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(alice.cart_items.count).to eq(0)
       end
 
       it "redirects to the user profile" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(response).to redirect_to user_path(alice)
       end
     end
@@ -111,22 +111,22 @@ describe OrdersController do
       end
 
       it "does not create a new order" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(Order.count).to eq(0)
       end
 
       it "does not send out email" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(ActionMailer::Base.deliveries).to be_empty
       end
 
       it "displays the danger message" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(flash[:danger]).to be_present
       end
 
       it "renders the new template" do
-        post :create, optionsRadios: shipping_option.id
+        post :create, params: {optionsRadios: shipping_option.id}
         expect(response).to render_template "users/show"
       end
     end
@@ -134,14 +134,14 @@ describe OrdersController do
 
   describe "GET show" do
     it_behaves_like "require sign in" do
-      let(:action) {get :show, id: 1}
+      let(:action) {get :show, params: {id: 1}}
     end
 
     it "sets @order" do
       alice = Fabricate(:user)
       set_current_user(alice)
       order = Fabricate(:order)
-      get :show, id: order.id
+      get :show, params: {id: order.id}
       expect(assigns(:order)).to eq(order)
     end
   end

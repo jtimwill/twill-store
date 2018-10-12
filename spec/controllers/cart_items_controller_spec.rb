@@ -28,7 +28,7 @@ describe CartItemsController do
     context "with new item" do
       let(:product) {Fabricate(:product)}
       before do
-        post :create, product_id: product.id, quantity: 1, user_id: alice.id
+        post :create, params: {product_id: product.id, quantity: 1, user_id: alice.id}
       end
 
       it "creates the cart_item" do
@@ -53,19 +53,19 @@ describe CartItemsController do
 
       it "does not create a new cart item" do
         cart_item = Fabricate(:cart_item, product_id: product.id, quantity: 4, user_id: alice.id)
-        post :create, product_id: product.id, quantity: 3, user_id: alice.id
+        post :create, params: {product_id: product.id, quantity: 3, user_id: alice.id}
         expect(alice.cart_items.count).to eq(1)
       end
 
       it "increments the product quantity" do
         cart_item = Fabricate(:cart_item, product_id: product.id, quantity: 4, user_id: alice.id)
-        post :create, product_id: product.id, quantity: 3, user_id: alice.id
+        post :create, params: {product_id: product.id, quantity: 3, user_id: alice.id}
         expect(CartItem.first.quantity).to eq(7)
       end
 
       it "redirects to the cart path" do
         cart_item = Fabricate(:cart_item, product_id: product.id, quantity: 4, user_id: alice.id)
-        post :create, product_id: product.id, quantity: 3, user_id: alice.id
+        post :create, params: {product_id: product.id, quantity: 3, user_id: alice.id}
         expect(response).to redirect_to cart_path
       end
     end
@@ -77,24 +77,24 @@ describe CartItemsController do
     before {set_current_user(alice)}
 
     it_behaves_like "require sign in" do
-      let(:action) {delete :destroy, id: 1}
+      let(:action) {delete :destroy, params: {id: 1}}
     end
 
     it "deletes the current user's cart_item" do
       cart_item = Fabricate(:cart_item, user_id: alice.id)
-      delete :destroy, id: cart_item.id
+      delete :destroy, params: {id: cart_item.id}
       expect(CartItem.count).to eq(0)
     end
 
     it "does not delete the cart_item of a different user" do
       cart_item = Fabricate(:cart_item, user_id: bob.id)
-      delete :destroy, id: cart_item.id
+      delete :destroy, params: {id: cart_item.id}
       expect(CartItem.count).to eq(1)
     end
 
     it "redirects to the cart path" do
       cart_item = Fabricate(:cart_item)
-      delete :destroy, id: cart_item.id
+      delete :destroy, params: {id: cart_item.id}
       expect(response).to redirect_to cart_path
     end
   end
@@ -107,21 +107,21 @@ describe CartItemsController do
     before {set_current_user(alice)}
 
     it_behaves_like "require sign in" do
-      let(:action) {post :update_cart, cart_items: [{id: 1, quantity: 5}]}
+      let(:action) {post :update_cart, params: {cart_items: [{id: 1, quantity: 5}]}}
     end
-    
+
     it_behaves_like "require items" do
-      let(:action) {post :update_cart, cart_items: [{id: 1, quantity: 5}]}
+      let(:action) {post :update_cart, params: {cart_items: [{id: 1, quantity: 5}]}}
     end
 
     it "updates the cart item quantity" do
-      post :update_cart, cart_items: [{id: cart_item1.id, quantity: 6}, {id: cart_item2.id, quantity: 4}]
+      post :update_cart, params: {cart_items: [{id: cart_item1.id, quantity: 6}, {id: cart_item2.id, quantity: 4}]}
       expect(alice.cart_items.reload.first.quantity).to eq(6)
       expect(alice.cart_items.reload.last.quantity).to eq(4)
     end
 
     it "redirects to the my queue page" do
-      post :update_cart, cart_items: [{id: cart_item1.id, quantity: 5}, {id: cart_item1.id, quantity: 5}]
+      post :update_cart, params: {cart_items: [{id: cart_item1.id, quantity: 5}, {id: cart_item1.id, quantity: 5}]}
       expect(response).to redirect_to cart_path
     end
   end

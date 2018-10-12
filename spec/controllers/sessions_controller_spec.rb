@@ -6,12 +6,12 @@ describe SessionsController do
     context "with valid credentials" do
       before do
         alice = Fabricate(:user)
-        post :create, username: alice.username, password: alice.password
+        post :create, params: {username: alice.username, password: alice.password}
       end
 
       it "puts the signed in user in the session" do
         alice = Fabricate(:user)
-        post :create, username: alice.username, password: alice.password
+        post :create, params: {username: alice.username, password: alice.password}
         expect(session[:user_id]).to eq(alice.id)
       end
 
@@ -27,7 +27,7 @@ describe SessionsController do
     context "with invalid credentials" do
       before do
         alice = Fabricate(:user)
-        post :create, username: alice.username, password: alice.password + 'asdfasf'
+        post :create, params: {username: alice.username, password: alice.password + 'asdfasf'}
       end
 
       it "does not put the signed in user in the session" do
@@ -56,7 +56,7 @@ describe SessionsController do
            :name => 'Joe Bloggs'
           }
         })
-        get :omniauth, provider: 'valid'
+        get :omniauth, params: {provider: 'valid'}
       end
 
       it "does not create a new user" do
@@ -80,7 +80,7 @@ describe SessionsController do
       before do
         ActionMailer::Base.deliveries.clear
         request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:valid]
-        get :omniauth, provider: "test"
+        get :omniauth, params: {provider: "test"}
       end
 
       it "creates the user" do
@@ -111,7 +111,7 @@ describe SessionsController do
     context "failed authentication caused by invalid hash" do
       before do
         request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:invalid]
-        get :omniauth, provider: "provider"
+        get :omniauth, params: {provider: "provider"}
       end
 
       it "sets the error message" do
@@ -127,7 +127,7 @@ describe SessionsController do
       before do
         Fabricate(:user, email: 'joe@bloggs.com', username: 'Joe Bloggs')
         request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:valid]
-        get :omniauth, provider: "provider"
+        get :omniauth, params: {provider: "provider"}
       end
 
       it "sets the error message" do

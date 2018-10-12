@@ -1,0 +1,15 @@
+current directory: /Users/timwilliams/Desktop/language_basics/Ruby/Ruby_Projects/RUBY/course_3_projects/twill-store/vendor/cache/ruby/2.5.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+/usr/local/opt/ruby/bin/ruby -r ./siteconf20181011-99875-1dqpvep.rb extconf.rb
+creating Makefile
+
+current directory: /Users/timwilliams/Desktop/language_basics/Ruby/Ruby_Projects/RUBY/course_3_projects/twill-store/vendor/cache/ruby/2.5.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/timwilliams/Desktop/language_basics/Ruby/Ruby_Projects/RUBY/course_3_projects/twill-store/vendor/cache/ruby/2.5.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/timwilliams/Desktop/language_basics/Ruby/Ruby_Projects/RUBY/course_3_projects/twill-store/vendor/cache/ruby/2.5.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20181011-99875-47m9po

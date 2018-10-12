@@ -43,7 +43,7 @@ describe Admin::ProductsController do
     context "with valid inputs" do
       before do
         set_current_admin
-        post :create, product: {title: "Lambo", description: "Fast Car!"}
+        post :create, params: {product: {title: "Lambo", description: "Fast Car!"}}
       end
 
       it "sets the flash success message" do
@@ -62,7 +62,7 @@ describe Admin::ProductsController do
     context "with invalid input" do
       before do
         set_current_admin
-        post :create, product: {title: "Lambo!"}
+        post :create, params: {product: {title: "Lambo!"}}
       end
 
       it "does not create a new product" do
@@ -88,22 +88,22 @@ describe Admin::ProductsController do
     before {set_current_admin}
 
     it_behaves_like "require sign in" do
-      let(:action) {delete :destroy, id: 1}
+      let(:action) {delete :destroy, params: {id: 1}}
     end
 
     it_behaves_like "require admin" do
-      let(:action) {delete :destroy, id: 1}
+      let(:action) {delete :destroy, params: {id: 1}}
     end
 
     it "deletes the product" do
       product = Fabricate(:product)
-      delete :destroy, id: product.id
+      delete :destroy, params: {id: product.id}
       expect(Product.count).to eq(0)
     end
 
     it "redirects to the product show page" do
       product = Fabricate(:product)
-      delete :destroy, id: product.id
+      delete :destroy, params: {id: product.id}
       expect(response).to redirect_to products_path
     end
   end

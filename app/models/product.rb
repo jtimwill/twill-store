@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Product < ApplicationRecord
   PER_PAGE = 10
   has_many :orders
   has_many :users, :through => :orders
