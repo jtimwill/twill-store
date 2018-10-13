@@ -18,12 +18,12 @@ Rails.application.configure do
   config.action_dispatch.show_exceptions = false
 
   config.active_support.deprecation = :notify
-  config.action_mailer.default_url_options = { host: 'twill-store-staging.herokuapp.com'}
+  config.action_mailer.default_url_options = { host: ENV['STAGING_URL']}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              ENV['MAILGUN_SMTP_SERVER'],
     port:                 ENV['MAILGUN_SMTP_PORT'],
-    domain:               'twill-store-staging.herokuapp.com',
+    domain:               ENV['STAGING_URL'],
     user_name:            ENV['MAILGUN_SMTP_LOGIN'],
     password:             ENV['MAILGUN_SMTP_PASSWORD'],
     authentication:       'plain',
