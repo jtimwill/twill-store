@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 gem 'rails', '5.1.4'
+gem 'pg', '0.18.4'
 gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'turbolinks', '~> 5'
@@ -12,7 +13,7 @@ gem 'bootstrap_form'
 gem 'bcrypt'
 gem 'sidekiq'
 gem 'unicorn'
-gem 'sentry-raven', :git => "https://github.com/getsentry/raven-ruby.git"
+gem 'sentry-raven'
 gem 'stripe'
 gem 'figaro'
 gem 'bootswatch-rails'
@@ -23,7 +24,6 @@ gem 'omniauth-google-oauth2'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'
@@ -44,11 +44,10 @@ group :test do
   gem 'shoulda-matchers'
   gem 'vcr'
   gem 'webmock'
-  gem 'database_cleaner', :git => "https://github.com/DatabaseCleaner/database_cleaner"
+  gem 'database_cleaner'
 end
 
 group :production, :staging do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
