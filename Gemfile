@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 gem 'rails', '5.1.4'
-gem 'pg', '0.18.4'
 gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'turbolinks', '~> 5'
@@ -24,6 +23,7 @@ gem 'omniauth-google-oauth2'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'
@@ -48,6 +48,7 @@ group :test do
 end
 
 group :production, :staging do
+  gem 'pg', '0.20.0'
   gem 'rails_12factor'
 end
 
