@@ -21,7 +21,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'letter_opener'
+gem 'letter_opener_web'
 
 group :development, :test do
   gem 'sqlite3'
@@ -34,6 +34,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'foreman'

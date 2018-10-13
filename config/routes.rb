@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products, only: [:new, :create, :destroy]
   end
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
 end
