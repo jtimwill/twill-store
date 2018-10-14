@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user != current_user
+      flash[:danger] = "You are not authorized to do that"
+      redirect_to user_path(current_user)
+    end
   end
 
   def new

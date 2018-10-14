@@ -8,10 +8,28 @@ describe UsersController do
     end
 
     it "sets @user" do
-      set_current_user
       alice = Fabricate(:user)
+      set_current_user
       get :show, params: {id: alice.id}
       expect(assigns(:user)).to eq(alice)
+    end
+
+    context "user id in URL params does not match current_user.id" do
+      it "redirects to current_user show path" do
+        bob = Fabricate(:user, id: 1)
+        alice = Fabricate(:user, id: 2)
+        set_current_user(bob)
+        get :show, params: {id: alice.id}
+        expect(response).to redirect_to user_path(bob.id)
+      end
+
+      it "sets the error message" do
+        bob = Fabricate(:user, id: 1)
+        alice = Fabricate(:user, id: 2)
+        set_current_user(bob)
+        get :show, params: {id: alice.id}
+        expect(flash[:danger]).to eq("You are not authorized to do that")
+      end
     end
   end
 
