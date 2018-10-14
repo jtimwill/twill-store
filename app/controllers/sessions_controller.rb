@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
         new_user.save!
         session[:user_id] = new_user.id
         flash[:success] = 'You are registered and signed in.'
-        AppMailer.delay.send_welcome_email(new_user)
+        AppMailer.send_welcome_email(new_user).deliver_now
         redirect_to root_path
       rescue => e
         flash[:danger] = "#{e.message}"

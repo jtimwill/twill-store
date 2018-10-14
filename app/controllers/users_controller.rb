@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "You are registered and signed in."
-      AppMailer.delay.send_welcome_email(@user)
+      AppMailer.send_welcome_email(@user).deliver_now
       redirect_to root_path
     else
       flash.now[:danger] = "Invalid user information. Please check the errors below."

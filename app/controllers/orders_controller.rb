@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     )
     if charge.successful?
       order.save
-      AppMailer.delay.send_order_summary_email(current_user)
+      AppMailer.send_order_summary_email(current_user).deliver_now
       flash[:success] = "Order Successful"
       clear_cart
       redirect_to user_path(current_user)

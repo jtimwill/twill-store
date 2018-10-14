@@ -10,7 +10,7 @@ describe SandboxEmailInterceptor do
     end
     it "intercepts email" do
       alice = Fabricate(:user, email: "alice@example.com")
-      AppMailer.delay.send_welcome_email(alice)
+      AppMailer.send_welcome_email(alice).deliver_now
       expect(ActionMailer::Base.deliveries.last.to).to eq(['test@example.com'])
     end
   end
