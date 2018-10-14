@@ -31,7 +31,7 @@ project is based on what I learned in the Tealeaf courses.
 
 ## Entity Relationship Diagram
 <p align="center">
-  <img alt="Image of ERD" src="https://raw.github.com/jtimwill/twill-store/tree/master/app/assets/images/twill-store-erd.png" />
+  <img alt="Image of ERD" src="https://raw.githubusercontent.com/jtimwill/twill-store/master/app/assets/images/twill-store-erd.png" />
 </p>
 
 ### In addition to what I learned while working through the Tealeaf curriculum, the following resources helped me complete this project
