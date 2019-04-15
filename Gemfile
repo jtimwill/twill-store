@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 
-gem 'rails', '5.1.6.1'
-gem 'bootstrap-sass'
+gem 'rails', '5.1.6.2'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'coffee-rails'
 gem 'turbolinks', '~> 5'
 gem 'sass-rails'
@@ -25,7 +25,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'letter_opener_web'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.6'
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'
