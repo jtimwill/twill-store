@@ -25,7 +25,7 @@ project is based on what I learned in the Tealeaf courses.
 3. ``` $ cd twill-store ``` # navigate to project's root directory
 4. ``` $ bundle install --without production ``` # install the non-production gems listed in the Gemfile.
 5. ``` $ rails db:migrate ``` # setup database
-6. ``` $ rspec ``` # run tests (they all should pass)
+6. ``` $ rails spec ``` # run tests (they all should pass)
 7. ``` $ rails server ``` # start development server
 11. Done. You can now navigate to localhost:3000 to open the app.
 
