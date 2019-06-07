@@ -27,7 +27,8 @@ project is based on what I learned in the Tealeaf courses.
 5. ``` $ rails db:migrate ``` # setup database
 6. ``` $ rails spec ``` # run tests (they all should pass)
 7. ``` $ rails server ``` # start development server
-11. Done. You can now navigate to localhost:3000 to open the app.
+8. Done. You can now navigate to localhost:3000 to open the app.
+9. ``` $ bundle update [name] ``` # Update gems
 
 ## Entity Relationship Diagram
 <p align="center">
